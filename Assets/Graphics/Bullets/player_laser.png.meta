@@ -1,13 +1,22 @@
 fileFormatVersion: 2
-guid: f92eddaf21571814ca3a29f42835621e
+guid: 1e5a4e632bf8be24ab61b3da061539f5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3733351472711231503
-    second: player_laser2_0
+      213: -7148508109839877455
+    second: player_laser_0
   - first:
-      213: -4216048185646341629
-    second: player_laser2_1
+      213: -4317566435099398963
+    second: player_laser_1
+  - first:
+      213: -4296685870600187831
+    second: player_laser_2
+  - first:
+      213: 1625011708387176878
+    second: player_laser_3
+  - first:
+      213: -6051995420695849751
+    second: player_laser_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -54,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_laser2_0
+      name: player_laser_0
       rect:
         serializedVersion: 2
-        x: 12
+        x: 13
         y: 13
-        width: 49
-        height: 7
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +127,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f0862a062678fc330800000000000000
-      internalID: 3733351472711231503
+      spriteID: 1babefe9fb56bcc90800000000000000
+      internalID: -7148508109839877455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_laser2_1
+      name: player_laser_1
       rect:
         serializedVersion: 2
-        x: 75
-        y: 12
-        width: 19
-        height: 8
+        x: 42
+        y: 11
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +149,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 302ae9243869d75c0800000000000000
-      internalID: -4216048185646341629
+      spriteID: dcc20c5e33ce414c0800000000000000
+      internalID: -4317566435099398963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_laser_2
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 11
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9409f6b27fa1f54c0800000000000000
+      internalID: -4296685870600187831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_laser_3
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 13
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea1b4420a833d8610800000000000000
+      internalID: 1625011708387176878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_laser_4
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 10
+        width: 80
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e4122fca3ef20ca0800000000000000
+      internalID: -6051995420695849751
       vertices: []
       indices: 
       edges: []
@@ -160,8 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      player_laser2_0: 3733351472711231503
-      player_laser2_1: -4216048185646341629
+      player_laser_0: -7148508109839877455
+      player_laser_1: -4317566435099398963
+      player_laser_2: -4296685870600187831
+      player_laser_3: 1625011708387176878
+      player_laser_4: -6051995420695849751
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

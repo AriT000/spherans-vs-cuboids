@@ -1,24 +1,28 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
 
     private Vector2 _WeaponCrossHairPos;
     [SerializeField] private float _bulletSpeed = 5f;
+    [SerializeField] IWeapon _weapon;
+    private InputAction fireAction;
 
 
-    //Weapon weapon make a factory type weapon design pattern class for later
+    //make a factory type weapon design pattern class for later
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Weapon.spawnbullet()
+        fireAction = InputSystem.actions.FindAction("Attack");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(fireAction.WasPerformedThisFrame())
+        {
+            _weapon.fire();
+        }
     }
-
-    //Purpose: delete bullet if far enough from camera for performance purposes
 }
