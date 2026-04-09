@@ -35,8 +35,6 @@ public class WeaponController : MonoBehaviour
         }
         
     }
-
-    //purpose: calculates the roation to transform the bullet orientation 
     private void updateBulletRotation()
     {
 
@@ -46,5 +44,7 @@ public class WeaponController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         _weaponGameObject.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
+    //purpose: calculates the roation to transform the bullet orientation 
+
 
 }

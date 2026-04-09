@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class SlowWeapon : Weapon
 {
@@ -32,5 +33,7 @@ public class SlowWeapon : Weapon
     {
         particleSystem.Emit(1);
     }
+
+
 
 }
