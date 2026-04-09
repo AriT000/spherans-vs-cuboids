@@ -1078,7 +1078,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7184044342812587135, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
   m_PrefabInstance: {fileID: 518091132122428366}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &803685002
+--- !u!114 &803684999
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1089,11 +1089,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beecff5da3006ae4a93060c212c531cc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponController
-  weaponFactory: {fileID: 803685003}
+  m_EditorClassIdentifier: '::'
+  weaponFactory: {fileID: 803685000}
   weaponType: 0
   playerTransform: {fileID: 1094872538}
---- !u!114 &803685003
+--- !u!114 &803685000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1108,9 +1108,9 @@ MonoBehaviour:
   slowWeapon: {fileID: 2104963961870842101, guid: babcc905b27fa034eb708a62f394ac29, type: 3}
   fastWeapon: {fileID: 2104963961870842101, guid: 54b22deba5d1bc547ac70740f900af6d, type: 3}
   shotgunWeapon: {fileID: 2104963961870842101, guid: 3f5cd5d54d6a86e4e83217b6fcd34cb9, type: 3}
-  slowWeaponColor: {r: 0.18396229, g: 1, b: 0.18396229, a: 0}
-  fastWeaponColor: {r: 0.8867924, g: 0.54556894, b: 0.12130654, a: 0}
-  shotGunWeaponColor: {r: 0.6797127, g: 0.16264686, b: 0.8018868, a: 0}
+  slowWeaponColor: {r: 0.06607044, g: 1, b: 0, a: 1}
+  fastWeaponColor: {r: 1, g: 0.92036945, b: 0, a: 1}
+  shotGunWeaponColor: {r: 1, g: 0, b: 0.579113, a: 1}
 --- !u!1 &825811454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,32 +1787,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1737030798584399599, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
       propertyPath: m_Name
-      value: Crosshair
+      value: Weapon
       objectReference: {fileID: 0}
-    - target: {fileID: 2181882497234766219, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181882497234766219, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 3468f6adeaae9cc4fb70127a36d80bad, type: 3}
-    - target: {fileID: 2181882497234766219, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181882497234766219, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181882497234766219, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181882497234766219, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 4631835255709994404, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
       propertyPath: _player
       value: 
@@ -1863,10 +1839,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1737030798584399599, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 803685002}
+      addedObject: {fileID: 803684999}
     - targetCorrespondingSourceObject: {fileID: 1737030798584399599, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 803685003}
+      addedObject: {fileID: 803685000}
   m_SourcePrefab: {fileID: 100100000, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
