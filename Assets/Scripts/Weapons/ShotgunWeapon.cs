@@ -26,7 +26,7 @@ public class ShotgunWeapon : Weapon
 
     public override void Fire()
     {
-        particleSystem.Emit(1);
+        particleSystem.Emit(10);
     }
 
 
