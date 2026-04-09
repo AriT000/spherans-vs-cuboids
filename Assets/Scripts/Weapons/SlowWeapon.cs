@@ -1,28 +1,36 @@
 using UnityEngine;
 
-public class SlowWeapon : MonoBehaviour, IWeapon
+public class SlowWeapon : Weapon
 {
-    private float _bulletSpeed;
 
-    private float _cooldown;
+    [SerializeField] GameObject weaponObject;
+    ParticleSystem particleSystem;
 
-    [SerializeField] private string weaponName = "SlowWeapon";
-    public string WeaponName { get => weaponName; set => weaponName = value ; }
 
-    private ParticleSystem _particleSystem;
-
-    public void fire()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Initialize()
-    {
-        ParticleSystem 
-    }
-
-    public void calculateDirection()
+    public override GameObject GetWeapon()
     {
 
+        Debug.Log("Weapon Object is Created");
+        return weaponObject;
     }
+
+    public void initialize()
+    {
+        
+    }
+
+    //sets the weapon object by using enabling particle system
+    public override void SetWeaponObject(GameObject weapon_object)
+    {
+        weaponObject = weapon_object;
+        particleSystem = weapon_object.GetComponent<ParticleSystem>();
+        Debug.Log("Weapon is set");
+        particleSystem.Stop();
+    }
+
+    public override void Fire()
+    {
+        particleSystem.Emit(1);
+    }
+
 }
