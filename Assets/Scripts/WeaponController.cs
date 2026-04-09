@@ -14,10 +14,9 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private Transform playerTransform;
 
     //make a factory type weapon design pattern class for later
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        fireAction = InputSystem.actions.FindAction("Attack");
+        fireAction = InputSystem.actions.FindAction("Attack");   
         weapon = weaponFactory.createWeapon(weaponType);
         GameObject weapon_object = Instantiate(weapon.GetWeapon(), transform.position, Quaternion.identity);
         weapon_object.transform.SetParent(transform);
@@ -40,11 +39,12 @@ public class WeaponController : MonoBehaviour
     //purpose: calculates the roation to transform the bullet orientation 
     private void updateBulletRotation()
     {
-        
+
         Vector2 crossHairPosition = transform.position;
-        Vector2 playerPos = new Vector2(playerTransform.position.x, playerTransform.position.y) - crossHairPosition;
-        float angle = Vector2.Angle(playerPos, Vector2.right);
-        _weaponGameObject.transform.rotation = Quaternion.Euler(0, 0, -angle);
+        Vector2 playerPos = new Vector2(playerTransform.position.x, playerTransform.position.y);
+        Vector2 direction = crossHairPosition - playerPos;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        _weaponGameObject.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
 }
