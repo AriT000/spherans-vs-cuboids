@@ -148,14 +148,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43934352}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -163,7 +163,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 144740982}
   - component: {fileID: 144740981}
   - component: {fileID: 144740980}
+  - component: {fileID: 144740983}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -200,10 +201,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 273454377}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.46400002}
-  m_AnchorMax: {x: 0.5, y: 0.46400002}
-  m_AnchoredPosition: {x: 0, y: 6.9994}
-  m_SizeDelta: {x: 688, y: 400.87}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &144740980
 MonoBehaviour:
@@ -217,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181d98ea1eabd4d72be840558c4c6189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImageScroller
+  x: 0.01
+  y: 0.01
 --- !u!114 &144740981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +255,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144740978}
   m_CullTransparentMesh: 1
+--- !u!114 &144740983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144740978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.AspectRatioFitter
+  m_AspectMode: 4
+  m_AspectRatio: 1.75
 --- !u!1 &273454373
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca78c576640697439f4f0d7edf18248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
-  target: {fileID: 0}
+  target: {fileID: 1191239405}
   smoothSpeed: 5
   offset: {x: 0, y: 0, z: -10}
 --- !u!1 &619394800
@@ -728,11 +745,55 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 5cb27698a38b11949b62c919908fc3ba, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1191239407}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 5cb27698a38b11949b62c919908fc3ba, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 43934356}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 5cb27698a38b11949b62c919908fc3ba, type: 3}
       insertIndex: -1
       addedObject: {fileID: 43934355}
   m_SourcePrefab: {fileID: -8435245712485981826, guid: 5cb27698a38b11949b62c919908fc3ba, type: 3}
+--- !u!4 &1191239405 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: 5cb27698a38b11949b62c919908fc3ba, type: 3}
+  m_PrefabInstance: {fileID: 1191239404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1191239407
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43934352}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.015625, y: -0.015625}
+  m_Radius: 0.296875
 --- !u!1 &1648985666
 GameObject:
   m_ObjectHideFlags: 0

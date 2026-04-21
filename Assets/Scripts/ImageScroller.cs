@@ -19,5 +19,10 @@ public class ImageScroller : MonoBehaviour
     void Update()
     {
          img.uvRect = new Rect(img.uvRect.position + new Vector2(x,y) * Time.deltaTime, img.uvRect.size);
+        //reset the position to avoid overflow
+         if(img.uvRect.x > 1)
+        {
+            img.uvRect = new Rect(new Vector2(0,0), img.uvRect.size);
+        }
     }
 }
