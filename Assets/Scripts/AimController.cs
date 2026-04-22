@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /***************************************************************
-*file: AimController
+*file: AimController.cs
 *author: Nathan Rinon
 *class: CS 4700 – Game Development
 *assignment: program 1

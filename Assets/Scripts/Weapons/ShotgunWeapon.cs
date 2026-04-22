@@ -1,3 +1,15 @@
+/***************************************************************
+*file: ShotgunWeapon.cs
+*author: Nathan Rinon
+*class: CS 4700 ? Game Development
+*assignment: program 1
+*date last modified: 4/22/2026
+*
+*purpose: This script controls the abstract class Weapon and shows what every weapon has in order to use the factory design pattern.
+*
+****************************************************************/
+
+
 using UnityEngine;
 
 public class ShotgunWeapon : Weapon

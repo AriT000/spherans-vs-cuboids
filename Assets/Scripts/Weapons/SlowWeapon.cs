@@ -1,3 +1,15 @@
+/***************************************************************
+*file: SlowWeapon.cs
+*author: Nathan Rinon
+*class: CS 4700 ? Game Development
+*assignment: program 1
+*date last modified: 4/22/2026
+*
+*purpose: This script implements the weapon abstract class for slowweapon.
+*
+****************************************************************/
+
+
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 

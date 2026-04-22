@@ -1,9 +1,5 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.InputSystem;
-
-/***************************************************************
-*file: WeaponController
+﻿/***************************************************************
+*file: WeaponController.cs
 *author: Nathan Rinon
 *class: CS 4700 – Game Development
 *assignment: program 1
@@ -12,6 +8,12 @@ using UnityEngine.InputSystem;
 *purpose: This script controls the weapon function the player uses. It listens what weapon the player has and listen if the player fires
 *
 ****************************************************************/
+
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+
 
 public class WeaponController : MonoBehaviour
 {

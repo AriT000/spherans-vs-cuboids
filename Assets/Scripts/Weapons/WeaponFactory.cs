@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /***************************************************************
-*file: WeaponFactory
+*file: WeaponFactory.cs
 *author: Nathan Rinon
 *class: CS 4700 – Game Development
 *assignment: program 1
