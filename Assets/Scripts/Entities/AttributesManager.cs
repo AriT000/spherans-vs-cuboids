@@ -1,4 +1,16 @@
-﻿using System;
+﻿/***************************************************************
+*file: AttributeManager.cs
+*author: Nathan Rinon
+*class: CS 4700 – Game Development
+*assignment: program 1
+*date last modified: 4/22/2026
+*
+*purpose: This script controls the attributes of player and enemy components via particle collisions.
+*
+****************************************************************/
+
+
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -31,13 +43,6 @@ namespace Assets.Scripts.Entities
         {
             return this.damagePower;
         }    
-
-
-
-        private int getHealth()
-        {
-            return this.health;
-        }
 
 
         private void Die()
