@@ -810,7 +810,7 @@ ParticleSystem:
     arc:
       value: 0
       mode: 0
-      spread: 0
+      spread: 0.19
       speed:
         serializedVersion: 2
         minMaxState: 0
@@ -865,7 +865,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2

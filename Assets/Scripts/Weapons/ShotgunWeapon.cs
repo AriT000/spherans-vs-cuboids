@@ -15,8 +15,9 @@ using UnityEngine;
 public class ShotgunWeapon : Weapon
 {
 
-    [SerializeField] GameObject weaponObject;
-    ParticleSystem particleSystem;
+    [SerializeField] private GameObject weaponObject;
+    [SerializeField] private int bulletCount = 5;
+    private ParticleSystem particleSystem;
 
 
     public override GameObject GetWeapon()
@@ -38,7 +39,7 @@ public class ShotgunWeapon : Weapon
 
     public override void Fire()
     {
-        particleSystem.Emit(10);
+        particleSystem.Emit(bulletCount);
     }
 
 
