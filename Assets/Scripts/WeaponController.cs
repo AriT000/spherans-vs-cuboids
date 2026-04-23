@@ -25,11 +25,13 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private WeaponType weaponType;
     private GameObject _weaponGameObject;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private OverheatManager overheatManager;
 
     //make a factory type weapon design pattern class for later
     void Start()
     {
         fireAction = InputSystem.actions.FindAction("Attack");
+        overheatManager = GetComponent<OverheatManager>();
         updateWeapon(weaponType);
 
     }
@@ -37,11 +39,11 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        overheatManager.regenerateHeat(Time.deltaTime);
         listenForWeaponChange();
-        
-        if(fireAction.WasPerformedThisFrame())
+        if(fireAction.WasPerformedThisFrame() && !overheatManager.isOverHeat())
         {
+            overheatManager.spendHeat();
             updateBulletRotation();
             weapon.Fire();   
         }
@@ -85,7 +87,8 @@ public class WeaponController : MonoBehaviour
         
 
     }
-
+    
+    //purpose: calculates the roation to transform the bullet orientation 
     private void updateBulletRotation()
     {
 
@@ -95,7 +98,7 @@ public class WeaponController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         _weaponGameObject.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
-    //purpose: calculates the roation to transform the bullet orientation 
+    
 
 
 }

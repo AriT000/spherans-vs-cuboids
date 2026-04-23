@@ -1153,6 +1153,7 @@ MonoBehaviour:
   weaponFactory: {fileID: 803685000}
   weaponType: 0
   playerTransform: {fileID: 1094872538}
+  overheatManager: {fileID: 0}
 --- !u!114 &803685000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,6 +1202,23 @@ MonoBehaviour:
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
+--- !u!114 &803685007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803684995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af68e027771edf4f8422694459ff13f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OverheatManager
+  maxHeat: 30
+  heat: 30
+  heatDamage: 5
+  heatRegenerationRate: 5
+  refreshRate: 0.5
 --- !u!1 &825811454
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,6 +2217,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1737030798584399599, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
       insertIndex: -1
       addedObject: {fileID: 803685003}
+    - targetCorrespondingSourceObject: {fileID: 1737030798584399599, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 803685007}
   m_SourcePrefab: {fileID: 100100000, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
