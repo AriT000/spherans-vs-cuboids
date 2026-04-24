@@ -1466,6 +1466,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Entities.AttributesManager
   damagePower: 5
   health: 100
+  entityMaterials: {fileID: 11400000, guid: 3ab21d2c124c4454bbace560e0ac0a81, type: 2}
+  damageColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &1241674923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1684,6 +1686,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Entities.AttributesManager
   damagePower: 5
   health: 20
+  entityMaterials: {fileID: 11400000, guid: 3ab21d2c124c4454bbace560e0ac0a81, type: 2}
+  damageColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!61 &1712688297
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1756,7 +1760,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4871cca97bb73884cbbd4ecc61a74d46, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

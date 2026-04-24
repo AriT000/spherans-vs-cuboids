@@ -14,6 +14,7 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Assets.Scripts.Entities
 {
@@ -22,20 +23,40 @@ namespace Assets.Scripts.Entities
 
         [SerializeField] private int damagePower;
         [SerializeField] private int health;
+        [SerializeField] private EntityMaterials entityMaterials;
+        [SerializeField] private Color damageColor;
 
         private void takeDamage(int damage)
         {
             health -= damage;
+            //stops it to resolve conflict 
+            StopCoroutine(playDamageAnimation(entityMaterials));
+            StartCoroutine(playDamageAnimation(entityMaterials));
             if (health < 0)
             {
                 Die();
             }
         }
 
+
+        //purpose: plays couroutine to play damage vfx
+        IEnumerator playDamageAnimation(EntityMaterials entityMaterials)
+        {
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            Material flashMaterial = entityMaterials.hitEffectSprite2D;
+            Material defaultSprite = entityMaterials.defaultSprite2D;
+            float flashLength = flashMaterial.GetFloat("_flashLength");
+            spriteRenderer.material = flashMaterial;
+            yield return new WaitForSeconds(flashLength);
+            spriteRenderer.material = defaultSprite;
+        }
+
         private void damage(GameObject gameObject)
         {
             AttributesManager target = gameObject.GetComponent<AttributesManager>();
+            
             target.takeDamage(damagePower);
+         
 
         }
         
@@ -69,8 +90,6 @@ namespace Assets.Scripts.Entities
                 print("the shooter's Attributes is null, the current object that is hitting this object" + gameObject.name + "is " + other.name);
                 print(e.Message);
             }
-            
-
         }
 
 
