@@ -20,7 +20,7 @@ public class SlowWeapon : Weapon
     ParticleSystem particleSystem;
 
 
-    //Purpose: returns weapon that the object contains.
+    //Purpose: returns weapon that this object contains.
     public override GameObject GetWeapon()
     {
 

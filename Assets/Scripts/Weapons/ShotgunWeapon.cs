@@ -19,7 +19,7 @@ public class ShotgunWeapon : Weapon
     [SerializeField] private int bulletCount = 5;
     private ParticleSystem particleSystem;
 
-
+    /Purpose: returns weapon that this object contains.
     public override GameObject GetWeapon()
     {
 
@@ -36,7 +36,7 @@ public class ShotgunWeapon : Weapon
         Debug.Log("Weapon is set");
         particleSystem.Stop();
     }
-
+    //Purpose: Fires the particle 
     public override void Fire()
     {
         particleSystem.Emit(bulletCount);

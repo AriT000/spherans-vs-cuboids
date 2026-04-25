@@ -23,6 +23,7 @@ public class WeaponFactory : MonoBehaviour
     [SerializeField] Color shotGunWeaponColor;
 
 
+	//Purpose: Creaates a weapon type by inserting the type of weapon and its color. 
     public Weapon createWeapon(WeaponType weaponName)
 	{
 		Weapon weapon = null;
