@@ -50,6 +50,7 @@ public class WeaponController : MonoBehaviour
         
     }
 
+    //Purpose: Listens if user changes their weapon. 
     private void listenForWeaponChange()
     {
         
@@ -75,6 +76,7 @@ public class WeaponController : MonoBehaviour
     }
 
 
+    //Purpose: Changes the current weapon to the parameters inserted, and createa a new game object in the editor. It ensures that the game object stays in the same place.
     private void updateWeapon(WeaponType weaponType)
     {
    

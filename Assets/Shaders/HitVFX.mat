@@ -70,7 +70,9 @@ Material:
     - _FlashLength: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _flashLength: 0.5
     m_Colors:
     - _OriginalColor: {r: 0, g: 0, b: 0, a: 0}
+    - _flashColor: {r: 0.3740859, g: 0.9811321, b: 0.041651815, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

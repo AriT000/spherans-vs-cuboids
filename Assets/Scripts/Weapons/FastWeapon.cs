@@ -1,13 +1,25 @@
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
+/***************************************************************
+*file: SlowWeapon.cs
+*author: Nathan Rinon
+*class: CS 4700 ? Game Development
+*assignment: program 1
+*date last modified: 4/22/2026
+*
+*purpose: This script implements the weapon abstract class for fast weapon qualities.
+*
+****************************************************************/
+
+
 public class FastWeapon : Weapon
 {
 
     [SerializeField] GameObject weaponObject;
     ParticleSystem particleSystem;
 
-
+    //Purpose: returns weapon that this object contains.
     public override GameObject GetWeapon()
     {
 
@@ -20,7 +32,7 @@ public class FastWeapon : Weapon
 
     }
 
-    //sets the weapon object by using enabling particle system
+    //purpose: Sets the weapon object, previously removes the current weapon and swaps the new one. Also ensures, the previous particle system was stopped.
     public override void SetWeaponObject(GameObject weapon_object)
     {
         weaponObject = weapon_object;
@@ -29,6 +41,7 @@ public class FastWeapon : Weapon
         particleSystem.Stop();
     }
 
+    //Purpose: Fires the particle 
     public override void Fire()
     {
         particleSystem.Emit(1);

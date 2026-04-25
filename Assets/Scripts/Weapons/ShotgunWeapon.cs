@@ -28,7 +28,7 @@ public class ShotgunWeapon : Weapon
     }
 
 
-    //sets the weapon object by using enabling particle system
+    //purpose: Sets the weapon object, previously removes the current weapon and swaps the new one. Also ensures, the previous particle system was stopped.
     public override void SetWeaponObject(GameObject weapon_object)
     {
         weaponObject = weapon_object;

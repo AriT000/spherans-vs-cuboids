@@ -3,7 +3,7 @@
 *author: Nathan Rinon
 *class: CS 4700 – Game Development
 *assignment: program 1
-*date last modified: 4/22/2026
+*date last modified: 4/25/2026
 *
 *purpose: This script controls the attributes of player and enemy components via particle collisions.
 *
@@ -24,13 +24,13 @@ namespace Assets.Scripts.Entities
         [SerializeField] private int damagePower;
         [SerializeField] private int health;
         [SerializeField] private EntityMaterials entityMaterials;
-        [SerializeField] private Color damageColor;
 
+        //Purpose: Damages the current game object health. If health reaches 0, game object dies.
         private void takeDamage(int damage)
         {
             health -= damage;
             //stops it to resolve conflict 
-            StopCoroutine(playDamageAnimation(entityMaterials));
+            StopCoroutine(playDamageAnimation(entityMaterials)); // stops to prevent material collision problems
             StartCoroutine(playDamageAnimation(entityMaterials));
             if (health < 0)
             {
@@ -39,7 +39,7 @@ namespace Assets.Scripts.Entities
         }
 
 
-        //purpose: plays couroutine to play damage vfx
+        //purpose: Plays couroutine to play damage vfx asychronously
         IEnumerator playDamageAnimation(EntityMaterials entityMaterials)
         {
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
@@ -51,10 +51,10 @@ namespace Assets.Scripts.Entities
             spriteRenderer.material = defaultSprite;
         }
 
+        //Purpose: Takes a game object's attribute's manager and damages its health.
         private void damage(GameObject gameObject)
         {
             AttributesManager target = gameObject.GetComponent<AttributesManager>();
-            
             target.takeDamage(damagePower);
          
 
@@ -66,11 +66,14 @@ namespace Assets.Scripts.Entities
         }    
 
 
+        //Purpose: removes game object from scene.
         private void Die()
         {
             Destroy(gameObject);
         }
 
+        //Purpose: Upon coming across a particle, the game object gets the atributes and loses health. If the game object doesn't have the attribute manager,
+        /// it checks it parents, if not, returns a nullreceptionexception.
         private void OnParticleCollision(GameObject other)
         {
             AttributesManager enemyAttributes = other.GetComponentInParent<AttributesManager>();
