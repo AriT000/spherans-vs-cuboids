@@ -19,7 +19,7 @@ public class ShotgunWeapon : Weapon
     [SerializeField] private int bulletCount = 5;
     private ParticleSystem particleSystem;
 
-    /Purpose: returns weapon that this object contains.
+    //Purpose: returns weapon that this object contains.
     public override GameObject GetWeapon()
     {
 
