@@ -35,6 +35,17 @@ public class ShotgunWeapon : Weapon
         particleSystem = weapon_object.GetComponent<ParticleSystem>();
         Debug.Log("Weapon is set");
         particleSystem.Stop();
+
+        Camera cam = Camera.main;
+        if (cam != null)
+        {
+            var main = particleSystem.main;
+            main.simulationSpace = ParticleSystemSimulationSpace.Custom;
+            main.customSimulationSpace = cam.transform;
+        }
+
+        var inheritVelocity = particleSystem.inheritVelocity;
+        inheritVelocity.enabled = false;
     }
     //Purpose: Fires the particle 
     public override void Fire()
