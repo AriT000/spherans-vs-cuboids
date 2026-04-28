@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2764152c01d7c1248bf7ce03345925b3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - slowWeapon: {fileID: 2104963961870842101, guid: babcc905b27fa034eb708a62f394ac29, type: 3}
+  - fastWeapon: {fileID: 2104963961870842101, guid: 54b22deba5d1bc547ac70740f900af6d, type: 3}
+  - shotgunWeapon: {fileID: 2104963961870842101, guid: 3f5cd5d54d6a86e4e83217b6fcd34cb9, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

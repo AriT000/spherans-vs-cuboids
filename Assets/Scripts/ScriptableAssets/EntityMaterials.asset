@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1724c97db54d60e41baf144aa893ac5f, type: 3}
+  m_Name: EntityMaterials
+  m_EditorClassIdentifier: Assembly-CSharp::EntityMaterials
+  defaultSprite2D: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  hitEffectSprite2D: {fileID: 2100000, guid: 4871cca97bb73884cbbd4ecc61a74d46, type: 2}
