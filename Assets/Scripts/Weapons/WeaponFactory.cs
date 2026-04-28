@@ -18,13 +18,16 @@ public class WeaponFactory : MonoBehaviour
 	[SerializeField] private GameObject slowWeapon;
 	[SerializeField] private GameObject fastWeapon;
 	[SerializeField] private GameObject shotgunWeapon;
+    [SerializeField] private int slowWeapon_heat;
+    [SerializeField] private int fastWeapon_heat;
+    [SerializeField] private int shotgunWeapon_heat;
     [SerializeField] Color slowWeaponColor;
     [SerializeField] Color fastWeaponColor;
     [SerializeField] Color shotGunWeaponColor;
 
 
 	//Purpose: Creaates a weapon type by inserting the type of weapon and its color. 
-    public Weapon createWeapon(WeaponType weaponName)
+    public Weapon createWeapon(WeaponType weaponName, OverheatManager overheatManager)
 	{
 		Weapon weapon = null;
 		if (weaponName == WeaponType.slowWeapon)
@@ -32,12 +35,16 @@ public class WeaponFactory : MonoBehaviour
 			weapon = new SlowWeapon();
 			weapon.SetWeaponObject(slowWeapon);
 			weapon.setColor(slowWeaponColor);
+			weapon.setHeatPower(slowWeapon_heat);
+			overheatManager.HeatDamage = weapon.getHeatPower();
 		}
 		else if (weaponName == WeaponType.fastWeapon)
 		{
             weapon = new SlowWeapon();
             weapon.SetWeaponObject(fastWeapon);
 			weapon.setColor(fastWeaponColor);
+            weapon.setHeatPower(fastWeapon_heat);
+            overheatManager.HeatDamage = weapon.getHeatPower();
         }
 		else if (weaponName == WeaponType.ShotgunWeapon)
 		{
@@ -45,6 +52,8 @@ public class WeaponFactory : MonoBehaviour
             weapon = new ShotgunWeapon();
             weapon.SetWeaponObject(shotgunWeapon);
 			weapon.setColor(shotGunWeaponColor);
+            weapon.setHeatPower(shotgunWeapon_heat);
+            overheatManager.HeatDamage = weapon.getHeatPower();
         }
 		else
 		{

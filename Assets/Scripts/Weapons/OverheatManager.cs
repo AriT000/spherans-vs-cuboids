@@ -35,7 +35,7 @@ public class OverheatManager : MonoBehaviour
     //purpose: checks to see if weapon is overheated
     public bool isOverHeat()
     {
-        if(heat <=0)
+        if(heat <=0 || HeatDamage > heat)
         {
             print("Weapon is overheated!");
             return true;
@@ -62,6 +62,10 @@ public class OverheatManager : MonoBehaviour
         if(time > refreshRate && buffer == true)
         {
             resetTimer();
+        }
+        else if(heat < 0)
+        {
+            heat = 0; //ensure no negatiuve heat
         }
     }
 

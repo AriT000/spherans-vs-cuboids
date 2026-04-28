@@ -16,6 +16,8 @@ using UnityEngine;
 public abstract class Weapon
 {
     private Color _color;
+    private int heat;
+    private OverheatManager overheatManager;
 
     public abstract GameObject GetWeapon();
 
@@ -27,6 +29,16 @@ public abstract class Weapon
     {
         _color = color;
         Debug.Log(_color);
+    }
+
+    public void setHeatPower(int heat)
+    {
+        this.heat = heat;
+    }
+
+    public int getHeatPower()
+    {
+        return this.heat;
     }
 
     public Color getColor()

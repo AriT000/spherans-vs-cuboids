@@ -80,7 +80,7 @@ public class WeaponController : MonoBehaviour
     private void updateWeapon(WeaponType weaponType)
     {
    
-        weapon = weaponFactory.createWeapon(weaponType);
+        weapon = weaponFactory.createWeapon(weaponType, overheatManager);
         GameObject weapon_object = Instantiate(weapon.GetWeapon(), transform.position, Quaternion.identity);
         weapon_object.transform.SetParent(transform);
         weapon.SetWeaponObject(weapon_object);
