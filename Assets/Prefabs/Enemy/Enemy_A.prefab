@@ -18,11 +18,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552449370846304516, guid: 391204b81f167064e9508b442a9a7ad9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.523515
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5552449370846304516, guid: 391204b81f167064e9508b442a9a7ad9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05017
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5552449370846304516, guid: 391204b81f167064e9508b442a9a7ad9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8149225625173400448, guid: 391204b81f167064e9508b442a9a7ad9, type: 3}
       propertyPath: CollisionModule.radiusScale
-      value: 0.0001
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8149225625173400448, guid: 391204b81f167064e9508b442a9a7ad9, type: 3}
       propertyPath: EmissionModule.m_BurstCount
@@ -307,11 +307,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3132179035396716113, guid: 07ad0fab89592224facb61fecdfdc90c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.48
+      value: 0.9863
       objectReference: {fileID: 0}
     - target: {fileID: 3132179035396716113, guid: 07ad0fab89592224facb61fecdfdc90c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.10034
+      value: 2.19491
       objectReference: {fileID: 0}
     - target: {fileID: 3132179035396716113, guid: 07ad0fab89592224facb61fecdfdc90c, type: 3}
       propertyPath: m_LocalPosition.z
