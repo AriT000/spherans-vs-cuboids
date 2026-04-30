@@ -30,8 +30,9 @@ namespace Assets.Scripts.Entities
         {
             health -= damage;
             //stops it to resolve conflict 
-            StopCoroutine(playDamageAnimation(entityMaterials)); // stops to prevent material collision problems
+             // stops to prevent material collision problems
             StartCoroutine(playDamageAnimation(entityMaterials));
+            StopCoroutine(playDamageAnimation(entityMaterials));
             if (health < 0)
             {
                 Die();
@@ -86,7 +87,10 @@ namespace Assets.Scripts.Entities
             {
                 int damageReceived = enemyAttributes.getDamagePower();
                 print(gameObject.name + ": " + health);
+                if(enemyAttributes.tag != gameObject.tag)
+                {
                 takeDamage(damageReceived);
+                }
             }
             catch (NullReferenceException e)
             {
