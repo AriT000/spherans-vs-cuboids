@@ -30,6 +30,8 @@ public class OverheatManager : MonoBehaviour
 
     private bool buffer; //controls timing
 
+    private HeatBarUI heatBarUI;
+
 
 
     //purpose: checks to see if weapon is overheated
@@ -88,6 +90,11 @@ public class OverheatManager : MonoBehaviour
     {
         buffer = false;
         time = 0;
+    }
+
+    private void updateUI()
+    {
+        heatBarUI.updateHeat(Heat);
     }
 
 }

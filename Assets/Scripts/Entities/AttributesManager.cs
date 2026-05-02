@@ -29,6 +29,7 @@ namespace Assets.Scripts.Entities
 
         public int Health { get => health; set => health = value; }
 
+
         //Purpose: Damages the current game object health. If health reaches 0, game object dies.
         private void takeDamage(int damage)
         {
@@ -40,8 +41,10 @@ namespace Assets.Scripts.Entities
                 healthBarUI.UpdateHealthBar(health);
             }
 
-            StopCoroutine(playDamageAnimation(entityMaterials)); // stops to prevent material collision problems
+            
             StartCoroutine(playDamageAnimation(entityMaterials));
+            StopCoroutine(playDamageAnimation(entityMaterials)); // stops to prevent material collision problems
+         
 
             if (gameObject.CompareTag("Player") && health <= 0)
             {

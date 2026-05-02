@@ -9,7 +9,7 @@ public class HealthBarUI : MonoBehaviour
     public Text healthText, MaxhealthText;
     [SerializeField]
     private RectTransform healthBar;
-    [SerializeField] private AttributesManager attributesManager;
+    private AttributesManager attributesManager;
 
     public float Health { get => health; set => health = value; }
     public float MaxHealth { get => maxHealth; set => maxHealth = value; }
@@ -34,7 +34,7 @@ public class HealthBarUI : MonoBehaviour
     //Purpose: Update the healthbar on callback on collision
     public void UpdateHealthBar(int currentHealth)
     {
-        float newWidth = (currentHealth / maxHealth) * Width;
+        float newWidth = currentHealth / maxHealth * Width;
         healthBar.sizeDelta = new Vector2(newWidth,Height);
         healthText.text = currentHealth.ToString();
     }
