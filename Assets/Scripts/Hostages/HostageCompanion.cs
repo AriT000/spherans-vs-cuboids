@@ -87,7 +87,7 @@ public class HostageCompanion : MonoBehaviour
         return new Vector2(Mathf.Abs(followOffset.x) * xDirection, followOffset.y);
     }
 
-    // NEW: find closest enemy inside camera view
+    //purpose: find closest enemy inside camera view
     private void UpdateTargeting()
     {
         if (mainCamera == null)
@@ -134,20 +134,18 @@ public class HostageCompanion : MonoBehaviour
         currentTarget = bestTarget;
     }
 
+    //purpose: enemy detection | hostage can sonly shoot when freed
     private void UpdateWeaponState()
     {
         bool enemyDetected = currentTarget != null;
 
         SetWeaponActive(enemyDetected);
 
-        // Pass target to weapon if it supports it
         if (weaponBehaviours == null) return;
-
         foreach (MonoBehaviour behaviour in weaponBehaviours)
         {
             if (behaviour == null) continue;
 
-            // if it's your hostage weapon script
             if (behaviour is HostageLaserWeapon hostageWeapon)
             {
                 hostageWeapon.SetTarget(currentTarget);

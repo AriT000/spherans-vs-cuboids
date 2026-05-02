@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3534372180609333274}
   - component: {fileID: 1949015144242179763}
+  - component: {fileID: 8246923436242319742}
   m_Layer: 0
   m_Name: Hostage_A
   m_TagString: Untagged
@@ -55,6 +56,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   drawDetectionGizmo: 0
+--- !u!114 &8246923436242319742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388715816025532415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa254d0bf2c02024abfe431bc1471ede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Entities.AttributesManager
+  GameOverScreen: {fileID: 0}
+  damagePower: 5
+  health: 0
+  entityMaterials: {fileID: 0}
 --- !u!1001 &7225488690039018978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -185,6 +202,22 @@ PrefabInstance:
       propertyPath: moveWithTransform
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8149225625173400448, guid: 4effe5ace4978834889878072a56c850, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149225625173400448, guid: 4effe5ace4978834889878072a56c850, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149225625173400448, guid: 4effe5ace4978834889878072a56c850, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149225625173400448, guid: 4effe5ace4978834889878072a56c850, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.5176471
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8799853877096287284, guid: 4effe5ace4978834889878072a56c850, type: 3}
     m_RemovedGameObjects: []
@@ -223,5 +256,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HostageLaserWeapon
   particleSystem: {fileID: 688519328899728456}
   targetEnemy: {fileID: 0}
-  fireRate: 0.5
+  fireRate: 1
   canFire: 0
+  damage: 1

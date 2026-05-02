@@ -6,6 +6,7 @@ public class HostageLaserWeapon : MonoBehaviour
     [SerializeField] private Transform targetEnemy;
     [SerializeField] private float fireRate = 2f;
     [SerializeField] private bool canFire = false;
+    [SerializeField] private int damage = 1;
 
     private float timer;
 

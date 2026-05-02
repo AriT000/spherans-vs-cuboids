@@ -1280,6 +1280,129 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &937807014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 937807015}
+  - component: {fileID: 937807016}
+  m_Layer: 0
+  m_Name: Wave Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &937807015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937807014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.17996, y: 0.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &937807016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937807014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb2ac1326cc8f745ab2d827e783d27f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveManager
+  player: {fileID: 1094872538}
+  mainCamera: {fileID: 519420031}
+  enemyPrefabs:
+  - id: Enemy_A
+    prefab: {fileID: 5258510221703678320, guid: 30486e26d48f9fd46b4476c4c33a31af, type: 3}
+  - id: Enemy_B
+    prefab: {fileID: 114567030707449927, guid: 07ad0fab89592224facb61fecdfdc90c, type: 3}
+  - id: Enemy_C
+    prefab: {fileID: 387507783610001831, guid: dd2ecccefae48264a98cdc9941bce966, type: 3}
+  - id: Guard_B
+    prefab: {fileID: 114567030707449927, guid: 142715586d338c249a2c35f664847f6c, type: 3}
+  hostagePrefabs:
+  - id: Hostage_A
+    prefab: {fileID: 388715816025532415, guid: b6342a7aaf7680a4bbbc7bacbc92dd7e, type: 3}
+  - id: Hostage_B
+    prefab: {fileID: 1524906565996697961, guid: c5fc6b490101b6b4b9965080b9ab1c7d, type: 3}
+  rounds:
+  - roundName: Round 1
+    formationCount: 2
+    delayBetweenFormations: 5
+    allowedFormations:
+    - formationName: Enemy_B_Duo
+      slots:
+      - localOffset: {x: 3, y: 1}
+        allowedEnemyIds:
+        - Enemy_B
+      - localOffset: {x: 5, y: -1}
+        allowedEnemyIds:
+        - Enemy_B
+    hostageEvent:
+      enabled: 1
+      eventCount: 1
+      hostagePrefabId: Hostage_A
+      guardEnemyId: Guard_B
+      guardOffset: 1
+      hostageOffsetFromPlayer: {x: 1.4, y: 0.5}
+      hostageFollowSmoothTime: 0.12
+      enemyLayerMask:
+        serializedVersion: 2
+        m_Bits: 4294967295
+  - roundName: Round 2
+    formationCount: 3
+    delayBetweenFormations: 5
+    allowedFormations:
+    - formationName: Laser, Laser, Big Laser
+      slots:
+      - localOffset: {x: -3, y: 1}
+        allowedEnemyIds:
+        - Enemy_B
+      - localOffset: {x: -1, y: 3}
+        allowedEnemyIds:
+        - Enemy_B
+      - localOffset: {x: 1, y: -1}
+        allowedEnemyIds:
+        - Enemy_C
+    - formationName: Enemy_B_Duo
+      slots:
+      - localOffset: {x: 3, y: 1}
+        allowedEnemyIds:
+        - Enemy_B
+      - localOffset: {x: 5, y: -1}
+        allowedEnemyIds:
+        - Enemy_B
+    hostageEvent:
+      enabled: 1
+      eventCount: 1
+      hostagePrefabId: Hostage_A
+      guardEnemyId: Guard_B
+      guardOffset: 1
+      hostageOffsetFromPlayer: {x: 1.4, y: 0.5}
+      hostageFollowSmoothTime: 0.12
+      enemyLayerMask:
+        serializedVersion: 2
+        m_Bits: 4294967295
+  spawnAreaMin: {x: -18, y: -10}
+  spawnAreaMax: {x: 18, y: 10}
+  minDistanceFromPlayer: 6
+  maxSpawnPointAttempts: 30
+  autoStart: 1
 --- !u!1 &1094872533 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2253911629886400664, guid: 5cb27698a38b11949b62c919908fc3ba, type: 3}
@@ -2467,3 +2590,4 @@ SceneRoots:
   - {fileID: 1123025138}
   - {fileID: 4545417272537390842}
   - {fileID: 1198074690}
+  - {fileID: 937807015}
