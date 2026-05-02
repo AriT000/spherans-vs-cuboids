@@ -12,6 +12,13 @@ public class WaveManager : MonoBehaviour
     }
 
     [System.Serializable]
+    public class HostagePrefabEntry
+    {
+        public string id;
+        public GameObject prefab;
+    }
+
+    [System.Serializable]
     public class FormationSlot
     {
         public Vector2 localOffset;
@@ -30,8 +37,12 @@ public class WaveManager : MonoBehaviour
     {
         public bool enabled = true;
         public int eventCount = 1;
-        public string guardEnemyId = "Enemy_A";
+        public string hostagePrefabId;
+        public string guardEnemyId = "Guard_B";
         public float guardOffset = 2f;
+        public Vector2 hostageOffsetFromPlayer = new Vector2(1.4f, 0.5f);
+        public float hostageFollowSmoothTime = 0.12f;
+        public LayerMask enemyLayerMask = ~0;
     }
 
     [System.Serializable]
@@ -51,6 +62,9 @@ public class WaveManager : MonoBehaviour
     [Header("Enemy Prefabs")]
     [SerializeField] private List<EnemyPrefabEntry> enemyPrefabs = new List<EnemyPrefabEntry>();
 
+    [Header("Hostage Prefabs")]
+    [SerializeField] private List<HostagePrefabEntry> hostagePrefabs = new List<HostagePrefabEntry>();
+
     [Header("Rounds")]
     [SerializeField] private List<RoundDefinition> rounds = new List<RoundDefinition>();
 
@@ -60,17 +74,18 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float minDistanceFromPlayer = 6f;
     [SerializeField] private int maxSpawnPointAttempts = 30;
 
-    [Header("Hostage Placeholder")]
+    [Header("Flow")]
     [SerializeField] private bool autoStart = true;
-    [SerializeField] private Color hostageColor = Color.cyan;
 
     private readonly Dictionary<string, GameObject> enemyLookup = new Dictionary<string, GameObject>();
+    private readonly Dictionary<string, GameObject> hostageLookup = new Dictionary<string, GameObject>();
     private readonly HashSet<SpawnedEnemyTracker> liveEnemies = new HashSet<SpawnedEnemyTracker>();
     private bool runningRounds;
 
     private void Awake()
     {
         BuildEnemyLookup();
+        BuildHostageLookup();
 
         if (player == null)
         {
@@ -111,6 +126,22 @@ public class WaveManager : MonoBehaviour
                 enemyLookup.Add(entry.id, entry.prefab);
             else
                 Debug.LogWarning($"Duplicate enemy prefab id found: {entry.id}");
+        }
+    }
+
+    private void BuildHostageLookup()
+    {
+        hostageLookup.Clear();
+
+        foreach (HostagePrefabEntry entry in hostagePrefabs)
+        {
+            if (entry == null || string.IsNullOrWhiteSpace(entry.id) || entry.prefab == null)
+                continue;
+
+            if (!hostageLookup.ContainsKey(entry.id))
+                hostageLookup.Add(entry.id, entry.prefab);
+            else
+                Debug.LogWarning($"Duplicate hostage prefab id found: {entry.id}");
         }
     }
 
@@ -184,7 +215,7 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy(GameObject prefab, Vector3 position)
+    private SpawnedEnemyTracker SpawnEnemy(GameObject prefab, Vector3 position)
     {
         GameObject enemyObj = Instantiate(prefab, position, Quaternion.identity);
 
@@ -200,6 +231,7 @@ public class WaveManager : MonoBehaviour
 
         tracker.Initialize(this);
         liveEnemies.Add(tracker);
+        return tracker;
     }
 
     public void NotifyEnemyDestroyed(SpawnedEnemyTracker tracker)
@@ -233,11 +265,17 @@ public class WaveManager : MonoBehaviour
 
     private void SpawnHostageEvent(HostageEventDefinition hostageEvent)
     {
-        Vector2 center = GetValidSpawnCenter();
-        CreateHostagePlaceholder(center);
+        if (player == null)
+        {
+            Debug.LogWarning("WaveManager cannot spawn a hostage event because the player reference is missing.");
+            return;
+        }
 
-        Vector3 leftGuardPos = new Vector3(center.x - hostageEvent.guardOffset, center.y, 0f);
-        Vector3 rightGuardPos = new Vector3(center.x + hostageEvent.guardOffset, center.y, 0f);
+        if (!hostageLookup.TryGetValue(hostageEvent.hostagePrefabId, out GameObject hostagePrefab))
+        {
+            Debug.LogWarning($"Hostage prefab id '{hostageEvent.hostagePrefabId}' was not found.");
+            return;
+        }
 
         if (!enemyLookup.TryGetValue(hostageEvent.guardEnemyId, out GameObject guardPrefab))
         {
@@ -245,21 +283,25 @@ public class WaveManager : MonoBehaviour
             return;
         }
 
-        SpawnEnemy(guardPrefab, leftGuardPos);
-        SpawnEnemy(guardPrefab, rightGuardPos);
-    }
+        Vector2 center = GetValidSpawnCenter();
+        GameObject hostageObj = Instantiate(hostagePrefab, new Vector3(center.x, center.y, 0f), Quaternion.identity);
 
-    private GameObject CreateHostagePlaceholder(Vector2 position)
-    {
-        GameObject hostage = new GameObject("HostagePlaceholder");
-        hostage.transform.position = new Vector3(position.x, position.y, 0f);
+        HostageCompanion hostageCompanion = hostageObj.GetComponent<HostageCompanion>();
+        if (hostageCompanion == null)
+            hostageCompanion = hostageObj.AddComponent<HostageCompanion>();
 
-        SpriteRenderer sr = hostage.AddComponent<SpriteRenderer>();
-        sr.color = hostageColor;
+        hostageCompanion.Initialize(player, mainCamera, hostageEvent.hostageOffsetFromPlayer, hostageEvent.hostageFollowSmoothTime, hostageEvent.enemyLayerMask);
 
-        CircleCollider2D circle = hostage.AddComponent<CircleCollider2D>();
-        circle.isTrigger = true;
+        Vector3 leftGuardPos = new Vector3(center.x - hostageEvent.guardOffset, center.y, 0f);
+        Vector3 rightGuardPos = new Vector3(center.x + hostageEvent.guardOffset, center.y, 0f);
 
-        return hostage;
+        SpawnedEnemyTracker leftGuard = SpawnEnemy(guardPrefab, leftGuardPos);
+        SpawnedEnemyTracker rightGuard = SpawnEnemy(guardPrefab, rightGuardPos);
+
+        HostageEventRuntime runtime = hostageObj.GetComponent<HostageEventRuntime>();
+        if (runtime == null)
+            runtime = hostageObj.AddComponent<HostageEventRuntime>();
+
+        runtime.Initialize(hostageCompanion, leftGuard, rightGuard);
     }
 }

@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class SpawnedEnemyTracker : MonoBehaviour
 {
     private WaveManager waveManager;
     private bool initialized;
+
+    public event Action<SpawnedEnemyTracker> Destroyed;
 
     public void Initialize(WaveManager manager)
     {
@@ -14,6 +17,8 @@ public class SpawnedEnemyTracker : MonoBehaviour
     private void OnDestroy()
     {
         if (!initialized) return;
+
+        Destroyed?.Invoke(this);
 
         if (waveManager != null)
         {
