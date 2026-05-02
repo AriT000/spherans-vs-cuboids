@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame()
+    
+
+    public void PlayGame(string scene_name)
     {
-        SceneManager.LoadScene("Demo_Scene");
+        SceneManager.LoadScene(scene_name);
     }
 
     public void QuitGame()
