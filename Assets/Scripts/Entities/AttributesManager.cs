@@ -12,28 +12,42 @@
 
 using System;
 using System.Collections;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
-
 namespace Assets.Scripts.Entities
 {
     public class AttributesManager : MonoBehaviour
     {
-
+        
+        [SerializeField] GameOverScreen GameOverScreen;
         [SerializeField] private int damagePower;
         [SerializeField] private int health;
         [SerializeField] private EntityMaterials entityMaterials;
+
+        public int Health { get => health; set => health = value; }
 
         //Purpose: Damages the current game object health. If health reaches 0, game object dies.
         private void takeDamage(int damage)
         {
             health -= damage;
             //stops it to resolve conflict 
-             // stops to prevent material collision problems
+            HealthBarUI healthBarUI = GetComponent<HealthBarUI>();
+            if (healthBarUI != null && gameObject.CompareTag("Player"))
+            {
+                healthBarUI.UpdateHealthBar(health);
+            }
+
+            StopCoroutine(playDamageAnimation(entityMaterials)); // stops to prevent material collision problems
             StartCoroutine(playDamageAnimation(entityMaterials));
-            StopCoroutine(playDamageAnimation(entityMaterials));
-            if (health < 0)
+
+            if (gameObject.CompareTag("Player") && health <= 0)
+            {
+                GameOverScreen.Setup();
+            }
+            if (!gameObject.CompareTag("Player") && health <= 0)
             {
                 Die();
             }
@@ -57,7 +71,6 @@ namespace Assets.Scripts.Entities
         {
             AttributesManager target = gameObject.GetComponent<AttributesManager>();
             target.takeDamage(damagePower);
-         
 
         }
         
@@ -68,6 +81,7 @@ namespace Assets.Scripts.Entities
 
 
         //Purpose: removes game object from scene.
+
         private void Die()
         {
             Destroy(gameObject);
@@ -87,10 +101,7 @@ namespace Assets.Scripts.Entities
             {
                 int damageReceived = enemyAttributes.getDamagePower();
                 print(gameObject.name + ": " + health);
-                if(enemyAttributes.tag != gameObject.tag)
-                {
                 takeDamage(damageReceived);
-                }
             }
             catch (NullReferenceException e)
             {
@@ -98,10 +109,5 @@ namespace Assets.Scripts.Entities
                 print(e.Message);
             }
         }
-
-
-
-
-
     }
 }
