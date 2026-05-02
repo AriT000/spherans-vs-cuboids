@@ -35,7 +35,7 @@ namespace Assets.Scripts.Entities
         {
             health -= damage;
             //stops it to resolve conflict 
-            HealthBarUI healthBarUI = GetComponent<HealthBarUI>();
+            HealthBarUI healthBarUI = GameObject.FindWithTag("HudManager").GetComponent<HealthBarUI>();
             if (healthBarUI != null && gameObject.CompareTag("Player"))
             {
                 healthBarUI.UpdateHealthBar(health);
