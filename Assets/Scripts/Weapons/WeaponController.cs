@@ -3,12 +3,13 @@
 *author: Nathan Rinon
 *class: CS 4700 – Game Development
 *assignment: program 1
-*date last modified: 4/9/2026
+*date last modified: 5/2/2026
 *
 *purpose: This script controls the weapon function the player uses. It listens what weapon the player has and listen if the player fires
 *
 ****************************************************************/
 
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,11 +28,23 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private OverheatManager overheatManager;
 
+    private HeatBarUI heatBarUI;
+
+
     //make a factory type weapon design pattern class for later
     void Start()
     {
         fireAction = InputSystem.actions.FindAction("Attack");
         overheatManager = GetComponent<OverheatManager>();
+
+        heatBarUI = GameObject.FindWithTag("HudManager").GetComponent<HeatBarUI>();
+        if(heatBarUI == null)
+        {
+            throw new NullReferenceException("No heatbar is used on scene, please put HUD prefab in scene");
+        }
+
+        heatBarUI.SetMaxHeat(overheatManager.MaxHeat);
+
         updateWeapon(weaponType);
 
     }
@@ -40,6 +53,7 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         overheatManager.regenerateHeat(Time.deltaTime);
+        heatBarUI.updateHeat(overheatManager.Heat);
         listenForWeaponChange();
         if(fireAction.WasPerformedThisFrame() && !overheatManager.isOverHeat())
         {
@@ -47,6 +61,7 @@ public class WeaponController : MonoBehaviour
             updateBulletRotation();
             weapon.Fire();   
         }
+       
         
     }
 

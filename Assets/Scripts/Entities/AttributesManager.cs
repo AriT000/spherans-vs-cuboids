@@ -29,19 +29,22 @@ namespace Assets.Scripts.Entities
 
         public int Health { get => health; set => health = value; }
 
+
         //Purpose: Damages the current game object health. If health reaches 0, game object dies.
         private void takeDamage(int damage)
         {
             health -= damage;
             //stops it to resolve conflict 
-            HealthBarUI healthBarUI = GetComponent<HealthBarUI>();
+            HealthBarUI healthBarUI = GameObject.FindWithTag("HudManager").GetComponent<HealthBarUI>();
             if (healthBarUI != null && gameObject.CompareTag("Player"))
             {
                 healthBarUI.UpdateHealthBar(health);
             }
 
-            StopCoroutine(playDamageAnimation(entityMaterials)); // stops to prevent material collision problems
+            
             StartCoroutine(playDamageAnimation(entityMaterials));
+            StopCoroutine(playDamageAnimation(entityMaterials)); // stops to prevent material collision problems
+         
 
             if (gameObject.CompareTag("Player") && health <= 0)
             {
