@@ -16,8 +16,11 @@ public class HealthBarUI : MonoBehaviour
 
     void Start()
     {
-        SetHealth(attributesManager.Health);
+        
         attributesManager = GameObject.FindGameObjectWithTag("Player").GetComponent<AttributesManager>();
+        SetHealth(attributesManager.Health);
+        Width = healthBar.sizeDelta.x;
+        Height = healthBar.sizeDelta.y;
     }
     
     //purpose: Set the health bar
@@ -25,6 +28,7 @@ public class HealthBarUI : MonoBehaviour
     {
         healthText.text = attributesManager.Health.ToString();
         MaxhealthText.text = attributesManager.Health.ToString();
+        MaxHealth = attributesManager.Health;
     }
 
     //Purpose: Update the healthbar on callback on collision
