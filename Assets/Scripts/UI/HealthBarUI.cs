@@ -11,6 +11,8 @@ public class HealthBarUI : MonoBehaviour
     private RectTransform healthBar;
     private AttributesManager attributesManager;
 
+    [SerializeField] private Animator player_portraitAnimator;
+
     public float Health { get => health; set => health = value; }
     public float MaxHealth { get => maxHealth; set => maxHealth = value; }
 
@@ -37,5 +39,12 @@ public class HealthBarUI : MonoBehaviour
         float newWidth = currentHealth / maxHealth * Width;
         healthBar.sizeDelta = new Vector2(newWidth,Height);
         healthText.text = currentHealth.ToString();
+        updatePortrait(currentHealth);
+    }
+
+    private void updatePortrait(int health)
+    {
+        float healthPercentage = health/MaxHealth;
+        player_portraitAnimator.SetFloat("Health_Percent", healthPercentage);
     }
 }
