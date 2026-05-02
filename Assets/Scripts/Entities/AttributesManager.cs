@@ -30,6 +30,12 @@ namespace Assets.Scripts.Entities
         {
             health -= damage;
             //stops it to resolve conflict 
+            HealthBarUI healthBarUI = GetComponent<HealthBarUI>();
+            if (healthBarUI != null)
+            {
+                healthBarUI.UpdateHealthBar(health);
+            }
+
             StopCoroutine(playDamageAnimation(entityMaterials)); // stops to prevent material collision problems
             StartCoroutine(playDamageAnimation(entityMaterials));
             if (health < 0)
@@ -56,7 +62,6 @@ namespace Assets.Scripts.Entities
         {
             AttributesManager target = gameObject.GetComponent<AttributesManager>();
             target.takeDamage(damagePower);
-         
 
         }
         
@@ -69,6 +74,11 @@ namespace Assets.Scripts.Entities
         //Purpose: removes game object from scene.
         private void Die()
         {
+            GameOverScreen gameOverScreen = GetComponent<GameOverScreen>();
+            if (gameOverScreen != null)
+            {
+                gameOverScreen.Setup();
+            }
             Destroy(gameObject);
         }
 
@@ -94,10 +104,5 @@ namespace Assets.Scripts.Entities
                 print(e.Message);
             }
         }
-
-
-
-
-
     }
 }
