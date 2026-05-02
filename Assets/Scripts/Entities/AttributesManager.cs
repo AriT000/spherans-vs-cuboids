@@ -27,13 +27,15 @@ namespace Assets.Scripts.Entities
         [SerializeField] private int health;
         [SerializeField] private EntityMaterials entityMaterials;
 
+        public int Health { get => health; set => health = value; }
+
         //Purpose: Damages the current game object health. If health reaches 0, game object dies.
         private void takeDamage(int damage)
         {
             health -= damage;
             //stops it to resolve conflict 
             HealthBarUI healthBarUI = GetComponent<HealthBarUI>();
-            if (healthBarUI != null)
+            if (healthBarUI != null && gameObject.CompareTag("Player"))
             {
                 healthBarUI.UpdateHealthBar(health);
             }
