@@ -1390,7 +1390,41 @@ MonoBehaviour:
     hostageEvent:
       enabled: 1
       eventCount: 1
-      hostagePrefabId: Hostage_A
+      hostagePrefabId: Hostage_B
+      guardEnemyId: Guard_B
+      guardOffset: 1
+      hostageOffsetFromPlayer: {x: 1.4, y: 0.5}
+      hostageFollowSmoothTime: 0.12
+      enemyLayerMask:
+        serializedVersion: 2
+        m_Bits: 4294967295
+  - roundName: Round 3
+    formationCount: 4
+    delayBetweenFormations: 8
+    allowedFormations:
+    - formationName: 3x Big lasers
+      slots:
+      - localOffset: {x: 3, y: 1}
+        allowedEnemyIds:
+        - Enemy_C
+      - localOffset: {x: 5, y: -1}
+        allowedEnemyIds:
+        - Enemy_C
+      - localOffset: {x: 1, y: 3}
+        allowedEnemyIds:
+        - Enemy_C
+    - formationName: duo circle blasts
+      slots:
+      - localOffset: {x: 5, y: -5}
+        allowedEnemyIds:
+        - Enemy_A
+      - localOffset: {x: -5, y: 5}
+        allowedEnemyIds:
+        - Enemy_A
+    hostageEvent:
+      enabled: 1
+      eventCount: 1
+      hostagePrefabId: Hostage_B
       guardEnemyId: Guard_B
       guardOffset: 1
       hostageOffsetFromPlayer: {x: 1.4, y: 0.5}
