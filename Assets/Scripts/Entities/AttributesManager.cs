@@ -12,15 +12,17 @@
 
 using System;
 using System.Collections;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
-
 namespace Assets.Scripts.Entities
 {
     public class AttributesManager : MonoBehaviour
     {
-
+        
+        [SerializeField] GameOverScreen GameOverScreen;
         [SerializeField] private int damagePower;
         [SerializeField] private int health;
         [SerializeField] private EntityMaterials entityMaterials;
@@ -38,7 +40,12 @@ namespace Assets.Scripts.Entities
 
             StopCoroutine(playDamageAnimation(entityMaterials)); // stops to prevent material collision problems
             StartCoroutine(playDamageAnimation(entityMaterials));
-            if (health < 0)
+
+            if (gameObject.CompareTag("Player") && health <= 0)
+            {
+                GameOverScreen.Setup();
+            }
+            if (!gameObject.CompareTag("Player") && health <= 0)
             {
                 Die();
             }
@@ -72,13 +79,9 @@ namespace Assets.Scripts.Entities
 
 
         //Purpose: removes game object from scene.
+
         private void Die()
         {
-            GameOverScreen gameOverScreen = GetComponent<GameOverScreen>();
-            if (gameOverScreen != null)
-            {
-                gameOverScreen.Setup();
-            }
             Destroy(gameObject);
         }
 
