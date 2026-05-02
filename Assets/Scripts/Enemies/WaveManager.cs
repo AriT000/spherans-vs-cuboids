@@ -1,0 +1,265 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WaveManager : MonoBehaviour
+{
+    [System.Serializable]
+    public class EnemyPrefabEntry
+    {
+        public string id;
+        public GameObject prefab;
+    }
+
+    [System.Serializable]
+    public class FormationSlot
+    {
+        public Vector2 localOffset;
+        public List<string> allowedEnemyIds = new List<string>();
+    }
+
+    [System.Serializable]
+    public class FormationDefinition
+    {
+        public string formationName;
+        public List<FormationSlot> slots = new List<FormationSlot>();
+    }
+
+    [System.Serializable]
+    public class HostageEventDefinition
+    {
+        public bool enabled = true;
+        public int eventCount = 1;
+        public string guardEnemyId = "Enemy_A";
+        public float guardOffset = 2f;
+    }
+
+    [System.Serializable]
+    public class RoundDefinition
+    {
+        public string roundName = "Round";
+        public int formationCount = 3;
+        public float delayBetweenFormations = 2f;
+        public List<FormationDefinition> allowedFormations = new List<FormationDefinition>();
+        public HostageEventDefinition hostageEvent = new HostageEventDefinition();
+    }
+
+    [Header("Scene References")]
+    [SerializeField] private Transform player;
+    [SerializeField] private Camera mainCamera;
+
+    [Header("Enemy Prefabs")]
+    [SerializeField] private List<EnemyPrefabEntry> enemyPrefabs = new List<EnemyPrefabEntry>();
+
+    [Header("Rounds")]
+    [SerializeField] private List<RoundDefinition> rounds = new List<RoundDefinition>();
+
+    [Header("Spawn Area")]
+    [SerializeField] private Vector2 spawnAreaMin = new Vector2(-18f, -10f);
+    [SerializeField] private Vector2 spawnAreaMax = new Vector2(18f, 10f);
+    [SerializeField] private float minDistanceFromPlayer = 6f;
+    [SerializeField] private int maxSpawnPointAttempts = 30;
+
+    [Header("Hostage Placeholder")]
+    [SerializeField] private bool autoStart = true;
+    [SerializeField] private Color hostageColor = Color.cyan;
+
+    private readonly Dictionary<string, GameObject> enemyLookup = new Dictionary<string, GameObject>();
+    private readonly HashSet<SpawnedEnemyTracker> liveEnemies = new HashSet<SpawnedEnemyTracker>();
+    private bool runningRounds;
+
+    private void Awake()
+    {
+        BuildEnemyLookup();
+
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.Find("Player");
+            if (playerObj != null)
+                player = playerObj.transform;
+        }
+
+        if (mainCamera == null)
+            mainCamera = Camera.main;
+    }
+
+    private void Start()
+    {
+        if (autoStart)
+        {
+            StartRounds();
+        }
+    }
+
+    public void StartRounds()
+    {
+        if (runningRounds) return;
+        runningRounds = true;
+        StartCoroutine(RunRounds());
+    }
+
+    private void BuildEnemyLookup()
+    {
+        enemyLookup.Clear();
+
+        foreach (EnemyPrefabEntry entry in enemyPrefabs)
+        {
+            if (entry == null || string.IsNullOrWhiteSpace(entry.id) || entry.prefab == null)
+                continue;
+
+            if (!enemyLookup.ContainsKey(entry.id))
+                enemyLookup.Add(entry.id, entry.prefab);
+            else
+                Debug.LogWarning($"Duplicate enemy prefab id found: {entry.id}");
+        }
+    }
+
+    private IEnumerator RunRounds()
+    {
+        for (int i = 0; i < rounds.Count; i++)
+        {
+            yield return StartCoroutine(RunSingleRound(rounds[i], i + 1));
+        }
+
+        Debug.Log("All rounds complete. Boss round can go here next.");
+        runningRounds = false;
+    }
+
+    private IEnumerator RunSingleRound(RoundDefinition round, int roundNumber)
+    {
+        Debug.Log($"Starting Round {roundNumber}: {round.roundName}");
+
+        if (round.allowedFormations == null || round.allowedFormations.Count == 0)
+        {
+            Debug.LogWarning($"Round '{round.roundName}' has no formations assigned.");
+        }
+        else
+        {
+            for (int i = 0; i < round.formationCount; i++)
+            {
+                SpawnRandomFormation(round);
+                yield return new WaitForSeconds(round.delayBetweenFormations);
+            }
+        }
+
+        if (round.hostageEvent != null && round.hostageEvent.enabled)
+        {
+            for (int i = 0; i < round.hostageEvent.eventCount; i++)
+            {
+                SpawnHostageEvent(round.hostageEvent);
+                yield return new WaitForSeconds(1f);
+            }
+        }
+
+        yield return new WaitUntil(() => liveEnemies.Count == 0);
+
+        Debug.Log($"Finished Round {roundNumber}: {round.roundName}");
+    }
+
+    private void SpawnRandomFormation(RoundDefinition round)
+    {
+        FormationDefinition formation = round.allowedFormations[Random.Range(0, round.allowedFormations.Count)];
+        Vector2 center = GetValidSpawnCenter();
+
+        foreach (FormationSlot slot in formation.slots)
+        {
+            if (slot.allowedEnemyIds == null || slot.allowedEnemyIds.Count == 0)
+                continue;
+
+            string chosenEnemyId = slot.allowedEnemyIds[Random.Range(0, slot.allowedEnemyIds.Count)];
+
+            if (!enemyLookup.TryGetValue(chosenEnemyId, out GameObject prefab))
+            {
+                Debug.LogWarning($"Enemy id '{chosenEnemyId}' was not found in enemyPrefabs.");
+                continue;
+            }
+
+            Vector3 spawnPos = new Vector3(
+                center.x + slot.localOffset.x,
+                center.y + slot.localOffset.y,
+                0f
+            );
+
+            SpawnEnemy(prefab, spawnPos);
+        }
+    }
+
+    private void SpawnEnemy(GameObject prefab, Vector3 position)
+    {
+        GameObject enemyObj = Instantiate(prefab, position, Quaternion.identity);
+
+        EnemySpawnBootstrap bootstrap = enemyObj.GetComponent<EnemySpawnBootstrap>();
+        if (bootstrap == null)
+            bootstrap = enemyObj.AddComponent<EnemySpawnBootstrap>();
+
+        bootstrap.Initialize(player, mainCamera);
+
+        SpawnedEnemyTracker tracker = enemyObj.GetComponent<SpawnedEnemyTracker>();
+        if (tracker == null)
+            tracker = enemyObj.AddComponent<SpawnedEnemyTracker>();
+
+        tracker.Initialize(this);
+        liveEnemies.Add(tracker);
+    }
+
+    public void NotifyEnemyDestroyed(SpawnedEnemyTracker tracker)
+    {
+        if (tracker != null)
+            liveEnemies.Remove(tracker);
+    }
+
+    private Vector2 GetValidSpawnCenter()
+    {
+        Vector2 fallback = player != null
+            ? (Vector2)player.position + Random.insideUnitCircle.normalized * minDistanceFromPlayer
+            : Vector2.zero;
+
+        for (int i = 0; i < maxSpawnPointAttempts; i++)
+        {
+            Vector2 point = new Vector2(
+                Random.Range(spawnAreaMin.x, spawnAreaMax.x),
+                Random.Range(spawnAreaMin.y, spawnAreaMax.y)
+            );
+
+            if (player == null)
+                return point;
+
+            if (Vector2.Distance(point, player.position) >= minDistanceFromPlayer)
+                return point;
+        }
+
+        return fallback;
+    }
+
+    private void SpawnHostageEvent(HostageEventDefinition hostageEvent)
+    {
+        Vector2 center = GetValidSpawnCenter();
+        CreateHostagePlaceholder(center);
+
+        Vector3 leftGuardPos = new Vector3(center.x - hostageEvent.guardOffset, center.y, 0f);
+        Vector3 rightGuardPos = new Vector3(center.x + hostageEvent.guardOffset, center.y, 0f);
+
+        if (!enemyLookup.TryGetValue(hostageEvent.guardEnemyId, out GameObject guardPrefab))
+        {
+            Debug.LogWarning($"Hostage guard enemy id '{hostageEvent.guardEnemyId}' was not found.");
+            return;
+        }
+
+        SpawnEnemy(guardPrefab, leftGuardPos);
+        SpawnEnemy(guardPrefab, rightGuardPos);
+    }
+
+    private GameObject CreateHostagePlaceholder(Vector2 position)
+    {
+        GameObject hostage = new GameObject("HostagePlaceholder");
+        hostage.transform.position = new Vector3(position.x, position.y, 0f);
+
+        SpriteRenderer sr = hostage.AddComponent<SpriteRenderer>();
+        sr.color = hostageColor;
+
+        CircleCollider2D circle = hostage.AddComponent<CircleCollider2D>();
+        circle.isTrigger = true;
+
+        return hostage;
+    }
+}
