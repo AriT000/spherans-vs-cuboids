@@ -1088,6 +1088,7 @@ MonoBehaviour:
   weaponType: 0
   playerTransform: {fileID: 1094872538}
   overheatManager: {fileID: 803685002}
+  shootAudio: {fileID: 803685004}
 --- !u!114 &803685002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1126,6 +1127,11 @@ MonoBehaviour:
   slowWeaponColor: {r: 1, g: 0, b: 0, a: 1}
   fastWeaponColor: {r: 0, g: 0, b: 1, a: 1}
   shotGunWeaponColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!82 &803685004 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6555090746119322057, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
+  m_PrefabInstance: {fileID: 518091132122428366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &825811454
 GameObject:
   m_ObjectHideFlags: 0
@@ -2473,6 +2479,14 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1094872533}
+    - target: {fileID: 6555090746119322057, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: c2062599abf778648a1eb1ddddc17688, type: 3}
+    - target: {fileID: 6555090746119322057, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7184044342812587135, guid: a0e7973fce6073e45a7d4c12aac26aef, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
