@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+
+    public static event System.Action OnAllRoundsComplete;
+
     [System.Serializable]
     public class EnemyPrefabEntry
     {
@@ -169,6 +172,7 @@ public class WaveManager : MonoBehaviour
 
         Debug.Log("All rounds complete. Boss round can go here next.");
         runningRounds = false;
+        OnAllRoundsComplete?.Invoke();  // move invoke to after boss is killed for proper win condition?
     }
 
     private IEnumerator RunSingleRound(RoundDefinition round, int roundNumber)
