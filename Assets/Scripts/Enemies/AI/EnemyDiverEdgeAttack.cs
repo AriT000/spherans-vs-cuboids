@@ -47,7 +47,10 @@ public class EnemyDiverEdgeAttack : MonoBehaviour
     [SerializeField] private float spriteForwardOffset = -90f;
 
     private Rigidbody2D rb;
+    private Collider2D solidHurtbox;
+    private Collider2D diveTrigger;
     private Collider2D hitbox;
+    private bool ignoredPlayerCollision;
     private Transform camTransform;
 
     private CameraEdge attachedEdge;
@@ -65,10 +68,19 @@ public class EnemyDiverEdgeAttack : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        hitbox = GetComponent<Collider2D>();
-
         rb.gravityScale = 0f;
-        //hitbox.isTrigger = true;
+
+        Collider2D[] colliders = GetComponents<Collider2D>();
+
+        foreach (Collider2D col in colliders)
+        {
+            if (col.isTrigger)
+                diveTrigger = col;
+            else
+                solidHurtbox = col;
+        }
+
+        hitbox = diveTrigger;
     }
 
     private void Start()
@@ -404,5 +416,24 @@ public class EnemyDiverEdgeAttack : MonoBehaviour
             if (playerObj != null)
                 playerTransform = playerObj.transform;
         }
+        IgnoreSolidCollisionWithPlayer();
+    }
+
+    private void IgnoreSolidCollisionWithPlayer()
+    {
+        if (ignoredPlayerCollision)
+            return;
+
+        if (solidHurtbox == null || playerTransform == null)
+            return;
+
+        Collider2D[] playerColliders = playerTransform.GetComponentsInChildren<Collider2D>();
+
+        foreach (Collider2D playerCol in playerColliders)
+        {
+            Physics2D.IgnoreCollision(solidHurtbox, playerCol, true);
+        }
+
+        ignoredPlayerCollision = true;
     }
 }
