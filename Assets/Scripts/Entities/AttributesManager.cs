@@ -44,11 +44,12 @@ namespace Assets.Scripts.Entities
             
             StartCoroutine(playDamageAnimation(entityMaterials));
             StopCoroutine(playDamageAnimation(entityMaterials)); // stops to prevent material collision problems
-         
+        
 
             if (gameObject.CompareTag("Player") && health <= 0)
             {
                 GameOverScreen.Setup();
+                Die();
             }
             if (!gameObject.CompareTag("Player") && health <= 0)
             {
@@ -84,6 +85,7 @@ namespace Assets.Scripts.Entities
 
 
         //Purpose: removes game object from scene.
+
 
         private void Die()
         {
