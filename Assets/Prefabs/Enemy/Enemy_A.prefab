@@ -406,6 +406,10 @@ PrefabInstance:
       propertyPath: m_Resource
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3035358147825221905, guid: 07ad0fab89592224facb61fecdfdc90c, type: 3}
+      propertyPath: shootAudio
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3132179035396716113, guid: 07ad0fab89592224facb61fecdfdc90c, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -514,7 +518,8 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.35247782
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1773729946956182259, guid: 07ad0fab89592224facb61fecdfdc90c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3132179035396716113, guid: 07ad0fab89592224facb61fecdfdc90c, type: 3}

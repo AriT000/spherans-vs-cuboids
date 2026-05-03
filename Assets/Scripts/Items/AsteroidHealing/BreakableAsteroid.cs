@@ -8,6 +8,11 @@ public class BreakableAsteroid : MonoBehaviour
     [SerializeField] private int damagePerPlayerHit = 10;
     [SerializeField] private string playerProjectileTag = "PlayerProjectile";
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip hitSfx;
+    [SerializeField] private AudioClip destroySfx;
+    [SerializeField] private AudioClip spawnSfx;
+
     [Header("Break Pieces")]
     [SerializeField] private GameObject[] cornerPiecePrefabs;
     [SerializeField] private float pieceSpeed = 2.5f;
@@ -29,9 +34,17 @@ public class BreakableAsteroid : MonoBehaviour
     private Material originalMaterial;
     private bool destroyed;
 
+    //for SFX (and hit VFX)
+    private AudioSource audioSource;
+    private Collider2D asteroidCollider;
+
     private void Awake()
     {
         health = maxHealth;
+
+        //added for SFX
+        audioSource = GetComponent<AudioSource>();
+        asteroidCollider = GetComponent<Collider2D>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -42,6 +55,11 @@ public class BreakableAsteroid : MonoBehaviour
             originalMaterial = spriteRenderer.material;
         else
             Debug.LogWarning($"{name} has no SpriteRenderer for hit VFX.");
+    }
+
+    private void Start()
+    {
+        PlaySfx(spawnSfx);
     }
 
     private void OnParticleCollision(GameObject other)
@@ -61,7 +79,13 @@ public class BreakableAsteroid : MonoBehaviour
         PlayHitVFX();
 
         if (health <= 0)
+        {
             Break();
+        }
+        else
+        {
+            PlaySfx(hitSfx);
+        }
     }
 
     private void PlayHitVFX()
@@ -118,10 +142,22 @@ public class BreakableAsteroid : MonoBehaviour
     {
         destroyed = true;
 
+        PlaySfx(destroySfx);
+
         SpawnPieces();
         SpawnCrystals();
 
-        Destroy(gameObject);
+        //Hide sprite so it looks destroyed while auio plays
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = false;
+
+        //Diable collider to prevent further hits and allow player to walk through
+        if (asteroidCollider != null)
+            asteroidCollider.enabled = false;
+
+        // Destroy the asteroid after the destroy SFX finishes
+        float destroyDelay = destroySfx != null ? destroySfx.length : 0f;
+        Destroy(gameObject, destroyDelay);
     }
 
     private void SpawnPieces()
@@ -141,6 +177,14 @@ public class BreakableAsteroid : MonoBehaviour
                 rb.linearVelocity = dir * pieceSpeed;
 
             Destroy(piece, pieceLifetime);
+        }
+    }
+
+    private void PlaySfx(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
         }
     }
 
