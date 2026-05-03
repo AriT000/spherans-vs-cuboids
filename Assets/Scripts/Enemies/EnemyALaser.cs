@@ -8,6 +8,8 @@ public class EnemyALaser : MonoBehaviour
 
     [SerializeField] private float fireRate = 1.2f;
 
+    [SerializeField] private AudioSource shootAudio;
+
     private float timer;
 
     void Awake()
@@ -30,6 +32,11 @@ public class EnemyALaser : MonoBehaviour
         {
             timer = 0f;
             particleSystem.Emit(bulletCount);
+
+            if (shootAudio != null)
+            {
+                shootAudio.Play();
+            }
         }
     }
 }
