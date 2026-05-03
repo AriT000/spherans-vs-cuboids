@@ -100,6 +100,7 @@ namespace Assets.Scripts.Entities
             {
                 int damageReceived = enemyAttributes.getDamagePower();
                 print(gameObject.name + ": " + health);
+                UnityEngine.Debug.Log($"{gameObject.name} took particle damage from: {other.name}");
                 takeDamage(damageReceived);
             }
             catch (NullReferenceException e)
