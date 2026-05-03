@@ -11,7 +11,7 @@ public class GameOverScreen : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("Demo_Scene");
+        SceneManager.LoadScene("demo_enemies_variation");
     }
 
     public void Exit()
