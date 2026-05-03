@@ -1296,10 +1296,10 @@ MonoBehaviour:
       slots:
       - localOffset: {x: 3, y: 1}
         allowedEnemyIds:
-        - Enemy_B
+        - Enemy_A
       - localOffset: {x: 5, y: -1}
         allowedEnemyIds:
-        - Enemy_B
+        - Enemy_A
     hostageEvent:
       enabled: 0
       eventCount: 1
