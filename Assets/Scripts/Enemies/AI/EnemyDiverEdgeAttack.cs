@@ -38,6 +38,10 @@ public class EnemyDiverEdgeAttack : MonoBehaviour
     [SerializeField] private float diveDistancePastPlayer = 4f;
     [SerializeField] private float reattachDelay = 0.25f;
 
+    [Header("SFX")]
+    [SerializeField] private AudioSource strafeAudio;
+    [SerializeField] private AudioSource diveAudio;
+
     [Header("Strafing While Waiting")]
     [SerializeField] private float strafeChangeIntervalMin = 1f;
     [SerializeField] private float strafeChangeIntervalMax = 2.5f;
@@ -132,6 +136,8 @@ public class EnemyDiverEdgeAttack : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             state = DiverState.Waiting;
 
+            StartStrafeAudio();
+
             if (diveRoutine != null)
                 StopCoroutine(diveRoutine);
 
@@ -217,6 +223,13 @@ public class EnemyDiverEdgeAttack : MonoBehaviour
     {
         state = DiverState.Diving;
         damagedPlayerThisDive = false;
+
+        StopStrafeAudio();
+
+        if (diveAudio != null)
+        {
+            diveAudio.Play();
+        }
 
         Vector2 startPos = rb.position;
         Vector2 lockedPlayerPosition = playerTransform.position;
@@ -399,6 +412,33 @@ public class EnemyDiverEdgeAttack : MonoBehaviour
     {
         targetCamera = cam;
         camTransform = cam != null ? cam.transform : null;
+    }
+
+    private void StartStrafeAudio()
+    {
+        if (strafeAudio != null && !strafeAudio.isPlaying)
+        {
+            strafeAudio.loop = true;
+            strafeAudio.Play();
+        }
+    }
+
+    private void StopStrafeAudio()
+    {
+        if (strafeAudio != null && strafeAudio.isPlaying)
+        {
+            strafeAudio.Stop();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        StopStrafeAudio();
+
+        if (diveAudio != null && diveAudio.isPlaying)
+        {
+            diveAudio.Stop();
+        }
     }
 
     private void FindMissingReferences()
