@@ -1296,10 +1296,10 @@ MonoBehaviour:
       slots:
       - localOffset: {x: 3, y: 1}
         allowedEnemyIds:
-        - Enemy_Diver
+        - Enemy_B
       - localOffset: {x: 5, y: -1}
         allowedEnemyIds:
-        - Enemy_Diver
+        - Enemy_B
     hostageEvent:
       enabled: 0
       eventCount: 1
@@ -1322,7 +1322,7 @@ MonoBehaviour:
       minLifetime: 10
       maxLifetime: 16
   - roundName: Round 2
-    formationCount: 3
+    formationCount: 2
     delayBetweenFormations: 10
     allowedFormations:
     - formationName: Laser, Laser, Big Laser
@@ -1380,12 +1380,9 @@ MonoBehaviour:
       - localOffset: {x: 1, y: 3}
         allowedEnemyIds:
         - Enemy_C
-    - formationName: duo circle blasts
+    - formationName: circle blasts
       slots:
       - localOffset: {x: 5, y: -5}
-        allowedEnemyIds:
-        - Enemy_A
-      - localOffset: {x: -5, y: 5}
         allowedEnemyIds:
         - Enemy_A
     hostageEvent:
@@ -1402,7 +1399,7 @@ MonoBehaviour:
     asteroidEvent:
       enabled: 1
       asteroidPrefab: {fileID: 3914784862136130488, guid: f5c8d66b5984825498e6f8f666859b7b, type: 3}
-      asteroidCount: 2
+      asteroidCount: 1
       delayBetweenAsteroids: 10
       spawnPadding: 1.5
       minDriftSpeed: 1.2
@@ -1443,7 +1440,7 @@ MonoBehaviour:
     asteroidEvent:
       enabled: 1
       asteroidPrefab: {fileID: 3914784862136130488, guid: f5c8d66b5984825498e6f8f666859b7b, type: 3}
-      asteroidCount: 2
+      asteroidCount: 1
       delayBetweenAsteroids: 10
       spawnPadding: 1.5
       minDriftSpeed: 1.2
