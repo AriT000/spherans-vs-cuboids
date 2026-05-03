@@ -15,20 +15,33 @@ public class BreakableAsteroid : MonoBehaviour
 
     [Header("Drops")]
     [SerializeField] private GameObject blueCrystalPrefab;
-    [SerializeField] private int crystalDropCount = 3;
+    [SerializeField] private int minCrystalDrops = 3;
+    [SerializeField] private int maxCrystalDrops = 4;
     [SerializeField] private float crystalSpawnRadius = 0.6f;
 
     [Header("Hit VFX")]
     [SerializeField] private EntityMaterials entityMaterials;
+    [SerializeField] private float fallbackFlashLength = 0.08f;
 
+    private Coroutine hitFlashRoutine;
     private int health;
     private SpriteRenderer spriteRenderer;
+    private Material originalMaterial;
     private bool destroyed;
 
     private void Awake()
     {
         health = maxHealth;
+
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        if (spriteRenderer != null)
+            originalMaterial = spriteRenderer.material;
+        else
+            Debug.LogWarning($"{name} has no SpriteRenderer for hit VFX.");
     }
 
     private void OnParticleCollision(GameObject other)
@@ -45,24 +58,60 @@ public class BreakableAsteroid : MonoBehaviour
 
         health -= damage;
 
-        if (entityMaterials != null && spriteRenderer != null)
-            StartCoroutine(PlayHitFlash());
+        PlayHitVFX();
 
         if (health <= 0)
             Break();
     }
 
+    private void PlayHitVFX()
+    {
+        if (spriteRenderer == null)
+        {
+            Debug.LogWarning($"{name} cannot play hit VFX because SpriteRenderer is missing.");
+            return;
+        }
+
+        if (entityMaterials == null)
+        {
+            Debug.LogWarning($"{name} cannot play hit VFX because EntityMaterials is missing.");
+            return;
+        }
+
+        if (entityMaterials.hitEffectSprite2D == null)
+        {
+            Debug.LogWarning($"{name} cannot play hit VFX because hitEffectSprite2D is missing.");
+            return;
+        }
+
+        if (hitFlashRoutine != null)
+            StopCoroutine(hitFlashRoutine);
+
+        hitFlashRoutine = StartCoroutine(PlayHitFlash());
+    }
+
     private IEnumerator PlayHitFlash()
     {
-        Material defaultMaterial = entityMaterials.defaultSprite2D;
         Material hitMaterial = entityMaterials.hitEffectSprite2D;
 
         spriteRenderer.material = hitMaterial;
 
-        float flashLength = hitMaterial.GetFloat("_flashLength");
+        float flashLength = fallbackFlashLength;
+
+        if (hitMaterial.HasProperty("_flashLength"))
+            flashLength = hitMaterial.GetFloat("_flashLength");
+
         yield return new WaitForSeconds(flashLength);
 
-        spriteRenderer.material = defaultMaterial;
+        if (!destroyed && spriteRenderer != null)
+        {
+            if (entityMaterials.defaultSprite2D != null)
+                spriteRenderer.material = entityMaterials.defaultSprite2D;
+            else if (originalMaterial != null)
+                spriteRenderer.material = originalMaterial;
+        }
+
+        hitFlashRoutine = null;
     }
 
     private void Break()
@@ -109,16 +158,30 @@ public class BreakableAsteroid : MonoBehaviour
 
     private void SpawnCrystals()
     {
-        if (blueCrystalPrefab == null) return;
+        if (blueCrystalPrefab == null)
+        {
+            Debug.LogWarning($"{name} cannot spawn crystals because Blue Crystal Prefab is missing.");
+            return;
+        }
 
-        for (int i = 0; i < crystalDropCount; i++)
+        int safeMin = Mathf.Max(3, minCrystalDrops);
+        int safeMax = Mathf.Max(safeMin, maxCrystalDrops);
+
+        int dropCount = Random.Range(safeMin, safeMax + 1);
+
+        Debug.Log($"{name} spawning {dropCount} crystals.");
+
+        for (int i = 0; i < dropCount; i++)
         {
             Vector2 offset = Random.insideUnitCircle * crystalSpawnRadius;
-            Instantiate(
+
+            GameObject crystal = Instantiate(
                 blueCrystalPrefab,
                 transform.position + new Vector3(offset.x, offset.y, 0f),
                 Quaternion.identity
             );
+
+            Debug.Log($"Spawned crystal: {crystal.name} at {crystal.transform.position}");
         }
     }
 }

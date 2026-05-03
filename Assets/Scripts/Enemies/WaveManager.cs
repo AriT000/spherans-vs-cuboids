@@ -53,6 +53,21 @@ public class WaveManager : MonoBehaviour
         public float delayBetweenFormations = 2f;
         public List<FormationDefinition> allowedFormations = new List<FormationDefinition>();
         public HostageEventDefinition hostageEvent = new HostageEventDefinition();
+        public AsteroidEventDefinition asteroidEvent = new AsteroidEventDefinition();
+    }
+
+    [System.Serializable]
+    public class AsteroidEventDefinition
+    {
+        public bool enabled = false;
+        public GameObject asteroidPrefab;
+        public int asteroidCount = 3;
+        public float delayBetweenAsteroids = 0.6f;
+        public float spawnPadding = 1.5f;
+        public float minDriftSpeed = 1.2f;
+        public float maxDriftSpeed = 2.4f;
+        public float minLifetime = 10f;
+        public float maxLifetime = 16f;
     }
 
     [Header("Scene References")]
@@ -172,7 +187,10 @@ public class WaveManager : MonoBehaviour
                 yield return new WaitForSeconds(round.delayBetweenFormations);
             }
         }
-
+        if (round.asteroidEvent != null && round.asteroidEvent.enabled)
+        {
+            yield return StartCoroutine(SpawnAsteroidEvent(round.asteroidEvent));
+        }
         if (round.hostageEvent != null && round.hostageEvent.enabled)
         {
             for (int i = 0; i < round.hostageEvent.eventCount; i++)
@@ -303,5 +321,76 @@ public class WaveManager : MonoBehaviour
             runtime = hostageObj.AddComponent<HostageEventRuntime>();
 
         runtime.Initialize(hostageCompanion, leftGuard, rightGuard);
+    }
+
+    private IEnumerator SpawnAsteroidEvent(AsteroidEventDefinition asteroidEvent)
+    {
+        if (asteroidEvent.asteroidPrefab == null)
+        {
+            Debug.LogWarning("Asteroid event is enabled, but no asteroid prefab is assigned.");
+            yield break;
+        }
+
+        for (int i = 0; i < asteroidEvent.asteroidCount; i++)
+        {
+            SpawnDriftingAsteroid(asteroidEvent);
+            yield return new WaitForSeconds(asteroidEvent.delayBetweenAsteroids);
+        }
+    }
+
+    private void SpawnDriftingAsteroid(AsteroidEventDefinition asteroidEvent)
+    {
+        if (mainCamera == null)
+            mainCamera = Camera.main;
+
+        if (mainCamera == null)
+        {
+            Debug.LogWarning("Cannot spawn asteroid because Main Camera is missing.");
+            return;
+        }
+
+        float camHeight = mainCamera.orthographicSize;
+        float camWidth = camHeight * mainCamera.aspect;
+        Vector3 camPos = mainCamera.transform.position;
+
+        float left = camPos.x - camWidth;
+        float right = camPos.x + camWidth;
+        float top = camPos.y + camHeight;
+        float bottom = camPos.y - camHeight;
+
+        float spawnX = Random.Range(camPos.x, right);
+        float spawnY = top + asteroidEvent.spawnPadding;
+
+        Vector3 spawnPos = new Vector3(spawnX, spawnY, 0f);
+
+        float targetX = Random.Range(left - asteroidEvent.spawnPadding, camPos.x);
+        float targetY = bottom - asteroidEvent.spawnPadding;
+
+        Vector2 targetPos = new Vector2(targetX, targetY);
+        Vector2 driftDirection = (targetPos - (Vector2)spawnPos).normalized;
+
+        GameObject asteroid = Instantiate(
+            asteroidEvent.asteroidPrefab,
+            spawnPos,
+            Quaternion.identity
+        );
+
+        Rigidbody2D rb = asteroid.GetComponent<Rigidbody2D>();
+
+        if (rb == null)
+            rb = asteroid.AddComponent<Rigidbody2D>();
+
+        rb.gravityScale = 0f;
+        rb.linearVelocity = driftDirection * Random.Range(
+            asteroidEvent.minDriftSpeed,
+            asteroidEvent.maxDriftSpeed
+        );
+
+        rb.angularVelocity = Random.Range(-2f, 2f);
+
+        Destroy(
+            asteroid,
+            Random.Range(asteroidEvent.minLifetime, asteroidEvent.maxLifetime)
+        );
     }
 }

@@ -37,7 +37,7 @@ public class BlueHealingCrystal : MonoBehaviour
             if (healthBarUI != null)
                 healthBarUI.UpdateHealthBar(playerAttributes.Health);
         }
-
+        Debug.Log($"Crystal picked up by: {other.name}, tag: {other.tag}");
         Destroy(gameObject);
     }
 }
