@@ -1551,18 +1551,6 @@ MonoBehaviour:
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
---- !u!114 &1094872543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1094872533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97a121d4a347fb545a603a90fdf1db45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageDebug
 --- !u!1 &1198074687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,9 +1701,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 5cb27698a38b11949b62c919908fc3ba, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1094872541}
-    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 5cb27698a38b11949b62c919908fc3ba, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1094872543}
   m_SourcePrefab: {fileID: -8435245712485981826, guid: 5cb27698a38b11949b62c919908fc3ba, type: 3}
 --- !u!1 &1340668614
 GameObject:
