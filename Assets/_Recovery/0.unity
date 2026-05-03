@@ -1244,10 +1244,6 @@ MonoBehaviour:
     prefab: {fileID: 387507783610001831, guid: dd2ecccefae48264a98cdc9941bce966, type: 3}
   - id: Guard_B
     prefab: {fileID: 114567030707449927, guid: 142715586d338c249a2c35f664847f6c, type: 3}
-  - id: Enemy_Diver
-    prefab: {fileID: 3554118997496020540, guid: b51474c55928d354ab8f5ac913feb60e, type: 3}
-  - id: Enemy_Follower
-    prefab: {fileID: 3254534656242840931, guid: bcf90a9fe9c27c74da7b15f595c8762b, type: 3}
   hostagePrefabs:
   - id: Hostage_A
     prefab: {fileID: 388715816025532415, guid: b6342a7aaf7680a4bbbc7bacbc92dd7e, type: 3}
@@ -1262,10 +1258,10 @@ MonoBehaviour:
       slots:
       - localOffset: {x: 3, y: 1}
         allowedEnemyIds:
-        - Enemy_Follower
+        - Enemy_B
       - localOffset: {x: 5, y: -1}
         allowedEnemyIds:
-        - Enemy_Follower
+        - Enemy_B
     hostageEvent:
       enabled: 1
       eventCount: 1
@@ -1435,7 +1431,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.015625, y: 0}
+  m_Offset: {x: 0.015625, y: 0.484375}
   m_Radius: 0.296875
 --- !u!50 &1094872536
 Rigidbody2D:
