@@ -1001,9 +1001,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 360292523721539708, guid: 30486e26d48f9fd46b4476c4c33a31af, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642483846077345452, guid: 30486e26d48f9fd46b4476c4c33a31af, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5258510221703678320, guid: 30486e26d48f9fd46b4476c4c33a31af, type: 3}
       propertyPath: m_Name
       value: Enemy_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258510221703678320, guid: 30486e26d48f9fd46b4476c4c33a31af, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7068752596199952230, guid: 30486e26d48f9fd46b4476c4c33a31af, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1272,18 +1284,18 @@ MonoBehaviour:
   rounds:
   - roundName: Round 1
     formationCount: 2
-    delayBetweenFormations: 5
+    delayBetweenFormations: 10
     allowedFormations:
     - formationName: Enemy_B_Duo
       slots:
       - localOffset: {x: 3, y: 1}
         allowedEnemyIds:
-        - Enemy_Follower
+        - Enemy_Diver
       - localOffset: {x: 5, y: -1}
         allowedEnemyIds:
-        - Enemy_Follower
+        - Enemy_Diver
     hostageEvent:
-      enabled: 1
+      enabled: 0
       eventCount: 1
       hostagePrefabId: Hostage_A
       guardEnemyId: Guard_B
@@ -1305,7 +1317,7 @@ MonoBehaviour:
       maxLifetime: 16
   - roundName: Round 2
     formationCount: 3
-    delayBetweenFormations: 5
+    delayBetweenFormations: 10
     allowedFormations:
     - formationName: Laser, Laser, Big Laser
       slots:
@@ -1327,7 +1339,7 @@ MonoBehaviour:
         allowedEnemyIds:
         - Enemy_B
     hostageEvent:
-      enabled: 1
+      enabled: 0
       eventCount: 1
       hostagePrefabId: Hostage_B
       guardEnemyId: Guard_B
@@ -1338,7 +1350,7 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 4294967295
     asteroidEvent:
-      enabled: 1
+      enabled: 0
       asteroidPrefab: {fileID: 3914784862136130488, guid: f5c8d66b5984825498e6f8f666859b7b, type: 3}
       asteroidCount: 1
       delayBetweenAsteroids: 0.6
@@ -1349,7 +1361,7 @@ MonoBehaviour:
       maxLifetime: 16
   - roundName: Round 3
     formationCount: 4
-    delayBetweenFormations: 8
+    delayBetweenFormations: 7
     allowedFormations:
     - formationName: 3x Big lasers
       slots:
@@ -1370,6 +1382,96 @@ MonoBehaviour:
       - localOffset: {x: -5, y: 5}
         allowedEnemyIds:
         - Enemy_A
+    hostageEvent:
+      enabled: 1
+      eventCount: 1
+      hostagePrefabId: Hostage_A
+      guardEnemyId: Guard_B
+      guardOffset: 1
+      hostageOffsetFromPlayer: {x: 1.4, y: 0.5}
+      hostageFollowSmoothTime: 0.12
+      enemyLayerMask:
+        serializedVersion: 2
+        m_Bits: 4294967295
+    asteroidEvent:
+      enabled: 1
+      asteroidPrefab: {fileID: 3914784862136130488, guid: f5c8d66b5984825498e6f8f666859b7b, type: 3}
+      asteroidCount: 2
+      delayBetweenAsteroids: 10
+      spawnPadding: 1.5
+      minDriftSpeed: 1.2
+      maxDriftSpeed: 2.4
+      minLifetime: 10
+      maxLifetime: 30
+  - roundName: Round 4
+    formationCount: 5
+    delayBetweenFormations: 7
+    allowedFormations:
+    - formationName: 'Enemy_B_and_C '
+      slots:
+      - localOffset: {x: 5, y: -5}
+        allowedEnemyIds:
+        - Enemy_B
+      - localOffset: {x: -5, y: 5}
+        allowedEnemyIds:
+        - Enemy_C
+    - formationName: divers
+      slots:
+      - localOffset: {x: 5, y: -5}
+        allowedEnemyIds:
+        - Enemy_Diver
+      - localOffset: {x: -5, y: 5}
+        allowedEnemyIds:
+        - Enemy_A
+    hostageEvent:
+      enabled: 0
+      eventCount: 1
+      hostagePrefabId: Hostage_B
+      guardEnemyId: Guard_B
+      guardOffset: 1
+      hostageOffsetFromPlayer: {x: 1.4, y: 0.5}
+      hostageFollowSmoothTime: 0.12
+      enemyLayerMask:
+        serializedVersion: 2
+        m_Bits: 4294967295
+    asteroidEvent:
+      enabled: 1
+      asteroidPrefab: {fileID: 3914784862136130488, guid: f5c8d66b5984825498e6f8f666859b7b, type: 3}
+      asteroidCount: 2
+      delayBetweenAsteroids: 10
+      spawnPadding: 1.5
+      minDriftSpeed: 1.2
+      maxDriftSpeed: 2.4
+      minLifetime: 10
+      maxLifetime: 30
+  - roundName: Round 5
+    formationCount: 6
+    delayBetweenFormations: 10
+    allowedFormations:
+    - formationName: 'Enemy_B_and_C '
+      slots:
+      - localOffset: {x: 5, y: -5}
+        allowedEnemyIds:
+        - Enemy_B
+      - localOffset: {x: -5, y: 5}
+        allowedEnemyIds:
+        - Enemy_C
+    - formationName: divers
+      slots:
+      - localOffset: {x: 5, y: -5}
+        allowedEnemyIds:
+        - Enemy_Diver
+      - localOffset: {x: -5, y: 5}
+        allowedEnemyIds:
+        - Enemy_A
+    - formationName: Followers
+      slots:
+      - localOffset: {x: 5, y: -5}
+        allowedEnemyIds:
+        - Enemy_Follower
+      - localOffset: {x: -5, y: 5}
+        allowedEnemyIds:
+        - Enemy_Follower
     hostageEvent:
       enabled: 1
       eventCount: 1
@@ -1526,6 +1628,14 @@ PrefabInstance:
     - target: {fileID: 387507783610001831, guid: dd2ecccefae48264a98cdc9941bce966, type: 3}
       propertyPath: m_Name
       value: Enemy_C
+      objectReference: {fileID: 0}
+    - target: {fileID: 387507783610001831, guid: dd2ecccefae48264a98cdc9941bce966, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 869521491398677074, guid: dd2ecccefae48264a98cdc9941bce966, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2543040747267754839, guid: dd2ecccefae48264a98cdc9941bce966, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1972,6 +2082,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic_Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114567030707449927, guid: 07ad0fab89592224facb61fecdfdc90c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3132179035396716113, guid: 07ad0fab89592224facb61fecdfdc90c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.45261
@@ -2011,6 +2125,10 @@ PrefabInstance:
     - target: {fileID: 3132179035396716113, guid: 07ad0fab89592224facb61fecdfdc90c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507613242098694475, guid: 07ad0fab89592224facb61fecdfdc90c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

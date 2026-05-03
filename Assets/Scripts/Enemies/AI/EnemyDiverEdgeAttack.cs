@@ -68,7 +68,7 @@ public class EnemyDiverEdgeAttack : MonoBehaviour
         hitbox = GetComponent<Collider2D>();
 
         rb.gravityScale = 0f;
-        hitbox.isTrigger = true;
+        //hitbox.isTrigger = true;
     }
 
     private void Start()

@@ -1,7 +1,6 @@
 using UnityEngine;
 using Assets.Scripts.Entities;
 
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 public class FollowerLaserProjectile : MonoBehaviour
 {
@@ -13,9 +12,9 @@ public class FollowerLaserProjectile : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float speed = 7f;
-    [SerializeField] private float turnSpeed = 8f;
+    [SerializeField] private float turnSpeed = 4f;
     [SerializeField] private float lockRadius = 1.5f;
-    [SerializeField] private float lockedLifetime = 2f;
+    [SerializeField] private float lifetime = 5f;
 
     [Header("Damage")]
     [SerializeField] private int fallbackDamage = 1;
@@ -24,43 +23,45 @@ public class FollowerLaserProjectile : MonoBehaviour
     [Header("Facing")]
     [SerializeField] private float spriteForwardOffset = 0f;
 
-    private Rigidbody2D rb;
     private Transform player;
-    private ProjectileState state = ProjectileState.Homing;
-
     private Vector2 moveDirection;
-    private float lockedTimer;
+    private ProjectileState state = ProjectileState.Homing;
+    private float lifeTimer;
     private bool hasHitPlayer;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-
         Collider2D col = GetComponent<Collider2D>();
         col.isTrigger = true;
-
-        rb.gravityScale = 0f;
     }
 
     private void Start()
     {
-        if (player == null)
-            FindPlayerIfMissing();
+        FindPlayerIfMissing();
 
-        if (player != null)
-            moveDirection = ((Vector2)player.position - rb.position).normalized;
-        else
-            moveDirection = transform.right;
+        if (moveDirection.sqrMagnitude < 0.001f)
+        {
+            if (player != null)
+                moveDirection = ((Vector2)player.position - (Vector2)transform.position).normalized;
+            else
+                moveDirection = transform.right;
+        }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        lifeTimer += Time.deltaTime;
+
+        if (lifeTimer >= lifetime)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (state == ProjectileState.Homing)
             HomingMove();
-        else
-            LockedMove();
 
-        rb.linearVelocity = moveDirection * speed;
+        transform.position += (Vector3)(moveDirection * speed * Time.deltaTime);
         FaceMoveDirection();
     }
 
@@ -71,13 +72,11 @@ public class FollowerLaserProjectile : MonoBehaviour
         if (player == null)
             return;
 
-        Vector2 toPlayer = (Vector2)player.position - rb.position;
-        float distanceToPlayer = toPlayer.magnitude;
+        Vector2 toPlayer = (Vector2)player.position - (Vector2)transform.position;
 
-        if (distanceToPlayer <= lockRadius)
+        if (toPlayer.magnitude <= lockRadius)
         {
             state = ProjectileState.Locked;
-            lockedTimer = 0f;
             return;
         }
 
@@ -86,16 +85,18 @@ public class FollowerLaserProjectile : MonoBehaviour
         moveDirection = Vector2.Lerp(
             moveDirection,
             desiredDirection,
-            turnSpeed * Time.fixedDeltaTime
+            turnSpeed * Time.deltaTime
         ).normalized;
     }
 
-    private void LockedMove()
+    public void Initialize(Transform target)
     {
-        lockedTimer += Time.fixedDeltaTime;
+        player = target;
 
-        if (lockedTimer >= lockedLifetime)
-            Destroy(gameObject);
+        if (player != null)
+            moveDirection = ((Vector2)player.position - (Vector2)transform.position).normalized;
+        else
+            moveDirection = transform.right;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -140,14 +141,6 @@ public class FollowerLaserProjectile : MonoBehaviour
 
         if (playerObj != null)
             player = playerObj.transform;
-    }
-
-    public void Initialize(Transform target)
-    {
-        player = target;
-
-        if (player != null)
-            moveDirection = ((Vector2)player.position - rb.position).normalized;
     }
 
     private void CallPrivateTakeDamage(AttributesManager attributes, int damage)
