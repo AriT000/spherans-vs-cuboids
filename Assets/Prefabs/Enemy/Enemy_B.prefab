@@ -380,6 +380,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2977897591182936195, guid: 391204b81f167064e9508b442a9a7ad9, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5552449370846304516, guid: 391204b81f167064e9508b442a9a7ad9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
