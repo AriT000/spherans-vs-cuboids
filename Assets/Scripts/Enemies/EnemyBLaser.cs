@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyLaserWeapon : MonoBehaviour
@@ -6,6 +7,8 @@ public class EnemyLaserWeapon : MonoBehaviour
     [SerializeField] private Transform player;
 
     [SerializeField] private float fireRate = 1.2f;
+
+    [SerializeField] private AudioSource shootAudio;
 
     private float timer;
 
@@ -29,6 +32,11 @@ public class EnemyLaserWeapon : MonoBehaviour
         {
             timer = 0f;
             particleSystem.Emit(1);
+
+            if (shootAudio != null)
+            {
+                shootAudio.Play();
+            }
         }
     }
 }
