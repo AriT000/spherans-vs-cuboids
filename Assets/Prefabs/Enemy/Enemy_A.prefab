@@ -261,7 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyALaser
   particleSystem: {fileID: 0}
   player: {fileID: 0}
-  bulletCount: 30
+  bulletCount: 6
   fireRate: 1.2
   shootAudio: {fileID: 4517120136037799212}
 --- !u!114 &3580236051178028288
