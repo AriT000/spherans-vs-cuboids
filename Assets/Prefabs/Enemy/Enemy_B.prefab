@@ -480,7 +480,7 @@ MonoBehaviour:
   particleSystem: {fileID: 2328203801568238142}
   player: {fileID: 7878350319992209165, guid: 5cb27698a38b11949b62c919908fc3ba, type: 3}
   fireRate: 1.2
-  shootAudio: {fileID: 0}
+  shootAudio: {fileID: 1773729946956182259}
 --- !u!114 &2852759647940542813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +508,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 9fbf5653b5ac0f043be47e7bcd2cdc3f, type: 3}
+  m_Resource: {fileID: 8300000, guid: 83743934453ee2440b5ff731729b76a7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
