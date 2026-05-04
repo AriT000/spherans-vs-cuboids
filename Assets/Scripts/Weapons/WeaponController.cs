@@ -59,6 +59,7 @@ public class WeaponController : MonoBehaviour
         if(fireAction.WasPerformedThisFrame() && !overheatManager.isOverHeat())
         {
             overheatManager.spendHeat();
+            updateWeaponPosition();
             updateBulletRotation();
             weapon.Fire();  
 
@@ -106,6 +107,18 @@ public class WeaponController : MonoBehaviour
         _weaponGameObject = weapon_object;
         
 
+    }
+
+    // determines the point from where the weapon should shoot from; was shooting from wherever the crosshair was before
+    private void updateWeaponPosition()
+    {
+        Vector2 playerPos = playerTransform.position;
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector2 direction = (mousePos - playerPos).normalized;
+
+        Vector2 shootPosition = playerPos + direction * 1.2f;
+
+        _weaponGameObject.transform.position = shootPosition;
     }
     
     //purpose: calculates the roation to transform the bullet orientation 
