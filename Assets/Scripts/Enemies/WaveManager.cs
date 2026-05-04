@@ -242,6 +242,7 @@ public class WaveManager : MonoBehaviour
         }
 
         SpawnEnemy(bossPrefab, spawnPos);
+        
     }
 
     private void SpawnRandomFormation(RoundDefinition round)
