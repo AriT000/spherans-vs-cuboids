@@ -2,20 +2,26 @@ using UnityEngine;
 
 public class MainMusicSingleton : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private static MainMusicSingleton musicInstance;
 
-    MainMusicSingleton musicInstance;
+    private AudioSource audioSource;
 
     private void Awake()
     {
-        if (musicInstance == null)
+        if (musicInstance != null && musicInstance != this)
         {
-            musicInstance = this;
-            DontDestroyOnLoad(this.gameObject);
+            Destroy(gameObject);
+            return;
         }
-        else
+
+        musicInstance = this;
+        DontDestroyOnLoad(gameObject);
+
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource != null && !audioSource.isPlaying)
         {
-            Destroy(musicInstance);
+            audioSource.Play();
         }
         
     }
