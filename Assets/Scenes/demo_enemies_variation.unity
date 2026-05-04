@@ -5294,6 +5294,7 @@ MonoBehaviour:
   healthBar: {fileID: 1653991276}
   weaponHeatBar: {fileID: 162404537}
   playerPortrait: {fileID: 1762972791}
+  winScene: {fileID: 4545417272537390846}
 --- !u!4 &1340668616
 Transform:
   m_ObjectHideFlags: 0
@@ -9596,6 +9597,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   pauseUI: {fileID: 4545417272537390843}
   isPaused: 0
+--- !u!1 &4545417272537390846 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8218534993377030877, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
+  m_PrefabInstance: {fileID: 4545417272537390842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4545417272537390847 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1245759406372446840, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
