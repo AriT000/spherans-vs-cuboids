@@ -13,13 +13,15 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using TMPro;
 
 
 public class WeaponController : MonoBehaviour
 {
 
-
+    public TextMeshProUGUI SlowGun;
+    public TextMeshProUGUI FastGun;
+    public TextMeshProUGUI ShotGun;
     private InputAction fireAction;
     [SerializeField] public WeaponFactory weaponFactory;
     private Weapon weapon;
@@ -65,7 +67,7 @@ public class WeaponController : MonoBehaviour
 
             shootAudio.Play(); 
         }
-       
+
         
     }
 
@@ -75,15 +77,21 @@ public class WeaponController : MonoBehaviour
         
         if (Keyboard.current.digit1Key.isPressed)
         {
+            ResetWeaponColors();
             updateWeapon(WeaponType.slowWeapon);
+            SlowGun.color = UnityEngine.Color.red;
         }
         if (Keyboard.current.digit2Key.isPressed)
         {
+            ResetWeaponColors();
             updateWeapon(WeaponType.fastWeapon);
+            FastGun.color = UnityEngine.Color.red;
         }
         else if (Keyboard.current.digit3Key.isPressed)
         {
+            ResetWeaponColors();
             updateWeapon(WeaponType.ShotgunWeapon);
+            ShotGun.color = UnityEngine.Color.red;
         }
 
         //ensure switching weapons doesn't destroy object
@@ -98,7 +106,6 @@ public class WeaponController : MonoBehaviour
     //Purpose: Changes the current weapon to the parameters inserted, and createa a new game object in the editor. It ensures that the game object stays in the same place.
     private void updateWeapon(WeaponType weaponType)
     {
-   
         weapon = weaponFactory.createWeapon(weaponType, overheatManager);
         GameObject weapon_object = Instantiate(weapon.GetWeapon(), transform.position, Quaternion.identity);
         weapon_object.transform.SetParent(transform);
@@ -133,5 +140,11 @@ public class WeaponController : MonoBehaviour
     }
     
 
+    private void ResetWeaponColors()
+    {
+        SlowGun.color = UnityEngine.Color.white;
+        FastGun.color = UnityEngine.Color.white;
+        ShotGun.color = UnityEngine.Color.white;
+    }
 
 }

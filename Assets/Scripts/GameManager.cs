@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameObject healthBar;
 	[SerializeField] private GameObject weaponHeatBar;
 	[SerializeField] private GameObject playerPortrait;
+	[SerializeField] private GameObject winScene;
 
 	private void Awake()
 	{
@@ -40,6 +41,15 @@ public class GameManager : MonoBehaviour
 		gameOverScreen.Setup();
 	}
 
+	private void TriggerWin()
+	{
+        player.SetActive(false);
+        healthBar.SetActive(false);
+        weaponHeatBar.SetActive(false);
+        playerPortrait.SetActive(false);
+		winScene.SetActive(true);
+    }
+
 	private void OnPlayerDeath()
 	{
 		TriggerGameOver();
@@ -47,6 +57,6 @@ public class GameManager : MonoBehaviour
 
 	private void OnAllRoundsComplete()
 	{
-		TriggerGameOver();
+		TriggerWin();
 	}
 }
