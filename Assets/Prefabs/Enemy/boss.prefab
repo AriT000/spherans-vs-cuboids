@@ -406,14 +406,14 @@ MonoBehaviour:
   strafeChangeIntervalMin: 1
   strafeChangeIntervalMax: 2
   playerBulletTag: Player
-  dodgeChance: 0.99
+  dodgeChance: 0
   dodgeDistance: 3
   dodgeSpeed: 10
   dodgeCooldown: 0
   timeBetweenMovesets: 2
   timeBetweenShots: 0.7
   shotgunSpreadAngle: 20
-  shotgunPellets: 3
+  shotgunPellets: 4
   facePlayer: 1
   spriteForwardOffset: -90
   bodyHitVfx: {fileID: 4221803460957958001}
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Entities.AttributesManager
   damagePower: 10
-  health: 150
+  health: 200
   entityMaterials: {fileID: 11400000, guid: 3ab21d2c124c4454bbace560e0ac0a81, type: 2}
 --- !u!58 &3244236808468852613
 CircleCollider2D:

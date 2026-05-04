@@ -4289,7 +4289,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 2039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -4724,7 +4724,7 @@ MonoBehaviour:
       maxLifetime: 16
   - roundName: Round 2
     formationCount: 2
-    delayBetweenFormations: 10
+    delayBetweenFormations: 8
     allowedFormations:
     - formationName: Laser, Laser, Big Laser
       slots:
@@ -4757,7 +4757,7 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 4294967295
     asteroidEvent:
-      enabled: 0
+      enabled: 1
       asteroidPrefab: {fileID: 3914784862136130488, guid: f5c8d66b5984825498e6f8f666859b7b, type: 3}
       asteroidCount: 1
       delayBetweenAsteroids: 0.6
@@ -4809,7 +4809,7 @@ MonoBehaviour:
       maxLifetime: 30
   - roundName: Round 4
     formationCount: 5
-    delayBetweenFormations: 7
+    delayBetweenFormations: 5
     allowedFormations:
     - formationName: 'Enemy_B_and_C '
       slots:
@@ -4825,6 +4825,9 @@ MonoBehaviour:
         allowedEnemyIds:
         - Enemy_Diver
       - localOffset: {x: -5, y: 5}
+        allowedEnemyIds:
+        - Enemy_A
+      - localOffset: {x: 0, y: 0}
         allowedEnemyIds:
         - Enemy_A
     hostageEvent:
@@ -4850,7 +4853,7 @@ MonoBehaviour:
       maxLifetime: 30
   - roundName: Round 5
     formationCount: 6
-    delayBetweenFormations: 10
+    delayBetweenFormations: 4
     allowedFormations:
     - formationName: 'Enemy_B_and_C '
       slots:
@@ -4876,6 +4879,9 @@ MonoBehaviour:
       - localOffset: {x: -5, y: 5}
         allowedEnemyIds:
         - Enemy_Follower
+      - localOffset: {x: -5, y: 5}
+        allowedEnemyIds:
+        - Enemy_A
     hostageEvent:
       enabled: 1
       eventCount: 1
@@ -4890,7 +4896,7 @@ MonoBehaviour:
     asteroidEvent:
       enabled: 1
       asteroidPrefab: {fileID: 3914784862136130488, guid: f5c8d66b5984825498e6f8f666859b7b, type: 3}
-      asteroidCount: 2
+      asteroidCount: 1
       delayBetweenAsteroids: 10
       spawnPadding: 1.5
       minDriftSpeed: 1.2
@@ -4898,14 +4904,25 @@ MonoBehaviour:
       minLifetime: 10
       maxLifetime: 30
   - roundName: Round 6
-    formationCount: 1
+    formationCount: 5
     delayBetweenFormations: 10
     allowedFormations:
-    - formationName: Boss
+    - formationName: Enemy_B_C
       slots:
       - localOffset: {x: 5, y: -5}
         allowedEnemyIds:
-        - boss
+        - Enemy_B
+      - localOffset: {x: -5, y: 5}
+        allowedEnemyIds:
+        - Enemy_C
+    - formationName: divers
+      slots:
+      - localOffset: {x: 5, y: -5}
+        allowedEnemyIds:
+        - Enemy_Diver
+      - localOffset: {x: -5, y: 5}
+        allowedEnemyIds:
+        - Enemy_Diver
     hostageEvent:
       enabled: 0
       eventCount: 1
@@ -4920,8 +4937,8 @@ MonoBehaviour:
     asteroidEvent:
       enabled: 1
       asteroidPrefab: {fileID: 3914784862136130488, guid: f5c8d66b5984825498e6f8f666859b7b, type: 3}
-      asteroidCount: 2
-      delayBetweenAsteroids: 30
+      asteroidCount: 1
+      delayBetweenAsteroids: 60
       spawnPadding: 1.5
       minDriftSpeed: 1.2
       maxDriftSpeed: 2.4

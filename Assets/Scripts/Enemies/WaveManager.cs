@@ -179,6 +179,11 @@ public class WaveManager : MonoBehaviour
     {
         Debug.Log($"Starting Round {roundNumber}: {round.roundName}");
 
+        if (roundNumber == 6)
+        {
+            SpawnBossOnce();
+        }
+
         if (round.allowedFormations == null || round.allowedFormations.Count == 0)
         {
             Debug.LogWarning($"Round '{round.roundName}' has no formations assigned.");
@@ -207,6 +212,36 @@ public class WaveManager : MonoBehaviour
         yield return new WaitUntil(() => liveEnemies.Count == 0);
 
         Debug.Log($"Finished Round {roundNumber}: {round.roundName}");
+    }
+
+    private void SpawnBossOnce()
+    {
+        if (!enemyLookup.TryGetValue("boss", out GameObject bossPrefab))
+        {
+            Debug.LogWarning("Boss prefab id 'boss' was not found in enemyPrefabs.");
+            return;
+        }
+
+        Vector3 spawnPos;
+
+        if (mainCamera != null)
+        {
+            float camHalfHeight = mainCamera.orthographicSize;
+            float camHalfWidth = camHalfHeight * mainCamera.aspect;
+            Vector3 camPos = mainCamera.transform.position;
+
+            spawnPos = new Vector3(
+                camPos.x + camHalfWidth + 2f,
+                camPos.y,
+                0f
+            );
+        }
+        else
+        {
+            spawnPos = GetValidSpawnCenter();
+        }
+
+        SpawnEnemy(bossPrefab, spawnPos);
     }
 
     private void SpawnRandomFormation(RoundDefinition round)
