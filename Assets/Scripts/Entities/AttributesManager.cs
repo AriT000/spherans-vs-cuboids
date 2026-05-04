@@ -21,14 +21,13 @@ namespace Assets.Scripts.Entities
 {
     public class AttributesManager : MonoBehaviour
     {
-        
-        [SerializeField] GameOverScreen GameOverScreen;
         [SerializeField] private int damagePower;
         [SerializeField] private int health;
         [SerializeField] private EntityMaterials entityMaterials;
 
         public int Health { get => health; set => health = value; }
 
+        public static event System.Action OnPlayerDeath;
 
         //Purpose: Damages the current game object health. If health reaches 0, game object dies.
         private void takeDamage(int damage)
@@ -49,7 +48,6 @@ namespace Assets.Scripts.Entities
             if (gameObject.CompareTag("Player") && health <= 0)
             {
                 GameOverScreen.Setup();
-                Die();
             }
             if (!gameObject.CompareTag("Player") && health <= 0)
             {
@@ -75,7 +73,6 @@ namespace Assets.Scripts.Entities
         {
             AttributesManager target = gameObject.GetComponent<AttributesManager>();
             target.takeDamage(damagePower);
-
         }
         
         private int getDamagePower()
@@ -85,7 +82,6 @@ namespace Assets.Scripts.Entities
 
 
         //Purpose: removes game object from scene.
-
 
         private void Die()
         {

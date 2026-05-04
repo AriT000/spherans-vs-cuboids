@@ -120,7 +120,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -173,18 +173,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 6
-        width: 15
-        height: 16
+        y: 5
+        width: 27
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4a7a471bda27a0940800000000000000
+      spriteID: b635f3fbf7a730747ab83c9ba9d46589
       internalID: 5263145204867966884
       vertices: []
       indices: 
@@ -194,19 +194,19 @@ TextureImporter:
       name: EnemyFollower-Sheet_1
       rect:
         serializedVersion: 2
-        x: 11
-        y: 21
-        width: 11
-        height: 11
+        x: 34
+        y: 3
+        width: 29
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c4fb95c5e60e8e4b0800000000000000
+      spriteID: dd3e6c4667a49de4b9caaa079fad7fc6
       internalID: -5410828187685241012
       vertices: []
       indices: 
@@ -216,19 +216,19 @@ TextureImporter:
       name: EnemyFollower-Sheet_2
       rect:
         serializedVersion: 2
-        x: 34
-        y: 8
-        width: 17
-        height: 14
+        x: 66
+        y: 3
+        width: 29
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e56892df0d05ab730800000000000000
+      spriteID: d67753e3c9acb6546b3e7348c00724df
       internalID: 4015610876284995166
       vertices: []
       indices: 
@@ -238,19 +238,19 @@ TextureImporter:
       name: EnemyFollower-Sheet_3
       rect:
         serializedVersion: 2
-        x: 46
-        y: 20
-        width: 12
-        height: 11
+        x: 97
+        y: 3
+        width: 29
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ef6494c9f0a23a900800000000000000
+      spriteID: 324f2bfa5fc0b514db9820430734c118
       internalID: 694445014080112382
       vertices: []
       indices: 
@@ -260,19 +260,19 @@ TextureImporter:
       name: EnemyFollower-Sheet_4
       rect:
         serializedVersion: 2
-        x: 66
-        y: 8
-        width: 17
-        height: 14
+        x: 130
+        y: 3
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 49797f18fc5076b20800000000000000
+      spriteID: c9ec018a27d94e8479dc4256ed2da9cf
       internalID: 3127474855028955028
       vertices: []
       indices: 
@@ -282,19 +282,19 @@ TextureImporter:
       name: EnemyFollower-Sheet_5
       rect:
         serializedVersion: 2
-        x: 78
-        y: 20
-        width: 12
-        height: 11
+        x: 163
+        y: 4
+        width: 28
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c29b341b953b56940800000000000000
+      spriteID: 1c7b07b5aaaa90246b7c3427e79583de
       internalID: 5288830535223982380
       vertices: []
       indices: 
@@ -304,19 +304,19 @@ TextureImporter:
       name: EnemyFollower-Sheet_6
       rect:
         serializedVersion: 2
-        x: 97
-        y: 15
-        width: 13
-        height: 11
+        x: 194
+        y: 3
+        width: 28
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 09908a6179e8eb2c0800000000000000
+      spriteID: 2f525330771ad724b92214242942a37f
       internalID: -4413933805205190256
       vertices: []
       indices: 
@@ -326,372 +326,20 @@ TextureImporter:
       name: EnemyFollower-Sheet_7
       rect:
         serializedVersion: 2
-        x: 107
+        x: 225
         y: 3
-        width: 13
-        height: 20
+        width: 28
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 71a17237c0be53e70800000000000000
+      spriteID: c7666c3e2d4c9e248ba08b89073d5888
       internalID: 9094433461248662039
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_8
-      rect:
-        serializedVersion: 2
-        x: 113
-        y: 20
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1b21b968fdbc16240800000000000000
-      internalID: 4783328440140632753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_9
-      rect:
-        serializedVersion: 2
-        x: 129
-        y: 15
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3e5106fc5f3adea10800000000000000
-      internalID: 1940387290608047587
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_10
-      rect:
-        serializedVersion: 2
-        x: 139
-        y: 3
-        width: 13
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2de97ac783bf556b0800000000000000
-      internalID: -5308060365758161198
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_11
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 20
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 963cb00edaa36bb80800000000000000
-      internalID: -8379445538213608599
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_12
-      rect:
-        serializedVersion: 2
-        x: 166
-        y: 15
-        width: 15
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41669e32884560c40800000000000000
-      internalID: 5478158940437571092
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_13
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 11
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 47f97636ba8f420a0800000000000000
-      internalID: -6907122513488666764
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_14
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 12
-        width: 11
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c2ae6c3c8b7ee6630800000000000000
-      internalID: 3922327106230872620
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_15
-      rect:
-        serializedVersion: 2
-        x: 235
-        y: 12
-        width: 11
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c147f0769f4998b0800000000000000
-      internalID: -5144993591735139899
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_16
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 5
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4c8b6c0cfeed0cd90800000000000000
-      internalID: -7079413492913620796
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_17
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 3
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9b8c9aa278ee14a30800000000000000
-      internalID: 4197898591989778617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_18
-      rect:
-        serializedVersion: 2
-        x: 81
-        y: 3
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f5223db1344e2fe20800000000000000
-      internalID: 3383017246989427295
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_19
-      rect:
-        serializedVersion: 2
-        x: 165
-        y: 4
-        width: 15
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bda221612f74b5420800000000000000
-      internalID: 2619766713324022491
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_20
-      rect:
-        serializedVersion: 2
-        x: 194
-        y: 5
-        width: 15
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6fa03f960c83de120800000000000000
-      internalID: 2444672571794459382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_21
-      rect:
-        serializedVersion: 2
-        x: 211
-        y: 4
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 11927ea4db9438c30800000000000000
-      internalID: 4360409941579082001
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_22
-      rect:
-        serializedVersion: 2
-        x: 226
-        y: 5
-        width: 15
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 99125eb78cf90d7f0800000000000000
-      internalID: -589795867764645479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EnemyFollower-Sheet_23
-      rect:
-        serializedVersion: 2
-        x: 243
-        y: 4
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8a1866553dbf8d40800000000000000
-      internalID: 5588893699370654350
       vertices: []
       indices: 
       edges: []
@@ -700,7 +348,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cf0fef4a6cc32c240bc41e034c740a3c
     internalID: 0
     vertices: []
     indices: 
@@ -708,32 +356,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       EnemyFollower-Sheet_0: 5263145204867966884
       EnemyFollower-Sheet_1: -5410828187685241012
-      EnemyFollower-Sheet_10: -5308060365758161198
-      EnemyFollower-Sheet_11: -8379445538213608599
-      EnemyFollower-Sheet_12: 5478158940437571092
-      EnemyFollower-Sheet_13: -6907122513488666764
-      EnemyFollower-Sheet_14: 3922327106230872620
-      EnemyFollower-Sheet_15: -5144993591735139899
-      EnemyFollower-Sheet_16: -7079413492913620796
-      EnemyFollower-Sheet_17: 4197898591989778617
-      EnemyFollower-Sheet_18: 3383017246989427295
-      EnemyFollower-Sheet_19: 2619766713324022491
       EnemyFollower-Sheet_2: 4015610876284995166
-      EnemyFollower-Sheet_20: 2444672571794459382
-      EnemyFollower-Sheet_21: 4360409941579082001
-      EnemyFollower-Sheet_22: -589795867764645479
-      EnemyFollower-Sheet_23: 5588893699370654350
       EnemyFollower-Sheet_3: 694445014080112382
       EnemyFollower-Sheet_4: 3127474855028955028
       EnemyFollower-Sheet_5: 5288830535223982380
       EnemyFollower-Sheet_6: -4413933805205190256
       EnemyFollower-Sheet_7: 9094433461248662039
-      EnemyFollower-Sheet_8: 4783328440140632753
-      EnemyFollower-Sheet_9: 1940387290608047587
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

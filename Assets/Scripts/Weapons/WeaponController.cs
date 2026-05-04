@@ -27,6 +27,7 @@ public class WeaponController : MonoBehaviour
     private GameObject _weaponGameObject;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private OverheatManager overheatManager;
+    [SerializeField] private AudioSource shootAudio;
 
     private HeatBarUI heatBarUI;
 
@@ -59,7 +60,9 @@ public class WeaponController : MonoBehaviour
         {
             overheatManager.spendHeat();
             updateBulletRotation();
-            weapon.Fire();   
+            weapon.Fire();  
+
+            shootAudio.Play(); 
         }
        
         
