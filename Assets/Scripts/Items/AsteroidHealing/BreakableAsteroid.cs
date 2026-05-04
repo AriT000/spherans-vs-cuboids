@@ -36,7 +36,7 @@ public class BreakableAsteroid : MonoBehaviour
 
     //for SFX (and hit VFX)
     private AudioSource audioSource;
-    private Collider2D asteroidCollider;
+    
 
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class BreakableAsteroid : MonoBehaviour
 
         //added for SFX
         audioSource = GetComponent<AudioSource>();
-        asteroidCollider = GetComponent<Collider2D>();
+        
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -151,9 +151,7 @@ public class BreakableAsteroid : MonoBehaviour
         if (spriteRenderer != null)
             spriteRenderer.enabled = false;
 
-        //Diable collider to prevent further hits and allow player to walk through
-        if (asteroidCollider != null)
-            asteroidCollider.enabled = false;
+
 
         // Destroy the asteroid after the destroy SFX finishes
         float destroyDelay = destroySfx != null ? destroySfx.length : 0f;
