@@ -417,12 +417,12 @@ MonoBehaviour:
   facePlayer: 1
   spriteForwardOffset: -90
   bodyHitVfx: {fileID: 4221803460957958001}
-  spawnSfx: {fileID: 0}
-  dashSfx: {fileID: 0}
-  fastFireSfx: {fileID: 0}
-  slowFireSfx: {fileID: 0}
-  shotgunFireSfx: {fileID: 0}
-  deathSfx: {fileID: 0}
+  spawnSfx: {fileID: 8300000, guid: 61a842ffb64e9e444afe28992b72b635, type: 3}
+  dashSfx: {fileID: 8300000, guid: 12e973655d78d764a9c15396827a75bb, type: 3}
+  fastFireSfx: {fileID: 8300000, guid: 3181c0aac93db9f4d9bce82edfca85a5, type: 3}
+  slowFireSfx: {fileID: 8300000, guid: 70cb53af8929dbe4f86e4aa846730f33, type: 3}
+  shotgunFireSfx: {fileID: 8300000, guid: 8556ac91c126b0b4f909e7491a954a66, type: 3}
+  deathSfx: {fileID: 8300000, guid: b2aa95ee2e8eccc489b2d29e4c8b9fad, type: 3}
 --- !u!114 &837110580127241202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,7 +813,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 61a842ffb64e9e444afe28992b72b635, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -910,7 +910,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 12e973655d78d764a9c15396827a75bb, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
