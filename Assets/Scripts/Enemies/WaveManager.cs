@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
-
+    public BossHealthBarUI bossHealthBarUI;
     public static event System.Action OnAllRoundsComplete;
 
     [System.Serializable]
@@ -240,9 +242,8 @@ public class WaveManager : MonoBehaviour
         {
             spawnPos = GetValidSpawnCenter();
         }
-
         SpawnEnemy(bossPrefab, spawnPos);
-        
+        bossHealthBarUI.gameObject.SetActive(true);
     }
 
     private void SpawnRandomFormation(RoundDefinition round)

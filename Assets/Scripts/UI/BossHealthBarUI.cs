@@ -1,0 +1,41 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
+using Assets.Scripts.Entities;
+public class BossHealthBarUI : MonoBehaviour
+{
+    public float health, maxHealth, Width, Height;
+    public Text healthText, MaxhealthText;
+    [SerializeField]
+    private RectTransform healthBar;
+    private AttributesManager attributesManager;
+
+    public float Health { get => health; set => health = value; }
+    public float MaxHealth { get => maxHealth; set => maxHealth = value; }
+
+    void Start()
+    {
+        
+        attributesManager = GameObject.FindGameObjectWithTag("Boss").GetComponent<AttributesManager>();
+        SetHealth(attributesManager.Health);
+        Width = healthBar.sizeDelta.x;
+        Height = healthBar.sizeDelta.y;
+    }
+    
+    //purpose: Set the health bar
+    public void SetHealth(int health)
+    {
+        healthText.text = attributesManager.Health.ToString();
+        MaxhealthText.text = attributesManager.Health.ToString();
+        MaxHealth = attributesManager.Health;
+    }
+
+    //Purpose: Update the healthbar on callback on collision
+    public void UpdateHealthBar(int currentHealth)
+    {
+        float newWidth = currentHealth / maxHealth * Width;
+        healthBar.sizeDelta = new Vector2(newWidth,Height);
+        healthText.text = currentHealth.ToString();
+    }
+}

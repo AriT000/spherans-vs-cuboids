@@ -243,6 +243,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -2253911629886400664, guid: d45a0c0deac47a945adc276bedd0ea8d, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: d45a0c0deac47a945adc276bedd0ea8d, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.980342

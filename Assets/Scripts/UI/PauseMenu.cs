@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 public class PauseMenu : MonoBehaviour
 {
+    public HealthBarUI healthBarUI;
+    public HeatBarUI heatBarUI;
     private PlayerControls playerControls;
     private InputAction menu;
 
@@ -27,8 +29,8 @@ public class PauseMenu : MonoBehaviour
     {
         menu = playerControls.Menu.Escape;
         menu.Enable();
-
         menu.performed += Pause;
+
     
     }
 
