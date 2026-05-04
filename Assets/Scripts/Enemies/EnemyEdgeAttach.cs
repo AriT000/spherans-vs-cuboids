@@ -29,10 +29,15 @@ public class EnemyEdgeFollower : MonoBehaviour
     [SerializeField] private bool facePlayer = true;
     [SerializeField] private float spriteForwardOffset = -90f;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip strafeSfx;
+    
     private Rigidbody2D rb;
     private Transform camTransform;
 
     private CameraEdge attachedEdge;
+
+    private AudioSource audioSource;
     private bool isAttached;
 
     // Position along the chosen edge:
@@ -45,6 +50,8 @@ public class EnemyEdgeFollower : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        audioSource = GetComponent<AudioSource>();
 
         if (targetCamera == null)
             targetCamera = Camera.main;
@@ -81,6 +88,8 @@ public class EnemyEdgeFollower : MonoBehaviour
                 isAttached = true;
                 rb.position = targetPos;
                 rb.linearVelocity = Vector2.zero;
+
+                StartStrafeSfx();
             }
             else
             {
@@ -232,6 +241,37 @@ public class EnemyEdgeFollower : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle + spriteForwardOffset);
     }
+
+    private void StartStrafeSfx()
+{
+    if (audioSource == null || strafeSfx == null)
+        return;
+
+    if (!audioSource.isPlaying)
+    {
+        audioSource.clip = strafeSfx;
+        audioSource.loop = true;
+        audioSource.Play();
+    }
+}
+
+private void StopStrafeSfx()
+{
+    if (audioSource != null && audioSource.isPlaying)
+    {
+        audioSource.Stop();
+    }
+}
+
+private void OnDisable()
+{
+    StopStrafeSfx();
+}
+
+private void OnDestroy()
+{
+    StopStrafeSfx();
+}
 
     public void SetPlayerTransform(Transform target)
     {

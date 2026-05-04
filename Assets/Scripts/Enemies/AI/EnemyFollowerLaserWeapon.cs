@@ -10,10 +10,16 @@ public class EnemyFollowerLaserWeapon : MonoBehaviour
     [SerializeField] private float fireRate = 2.0f;
     [SerializeField] private float spawnDistanceFromEnemy = 0.5f;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip fireSfx;
+
+    private AudioSource audioSource;
+
     private float timer;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         FindPlayerIfMissing();
     }
 
@@ -53,6 +59,11 @@ public class EnemyFollowerLaserWeapon : MonoBehaviour
         Vector3 spawnPos = transform.position + (Vector3)(dir * spawnDistanceFromEnemy);
 
         GameObject shot = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
+
+        if (audioSource != null && fireSfx != null)
+        {
+            audioSource.PlayOneShot(fireSfx);
+        }
 
         FollowerLaserProjectile projectile = shot.GetComponent<FollowerLaserProjectile>();
 

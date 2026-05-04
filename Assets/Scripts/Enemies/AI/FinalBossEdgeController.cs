@@ -53,6 +53,17 @@ public class FinalBossEdgeController : MonoBehaviour
     [Header("Body Collision VFX")]
     [SerializeField] private GameObject bodyHitVfx;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip spawnSfx;
+    [SerializeField] private AudioClip dashSfx;
+    [SerializeField] private AudioClip fastFireSfx;
+    [SerializeField] private AudioClip slowFireSfx;
+    [SerializeField] private AudioClip shotgunFireSfx;
+    [SerializeField] private AudioClip deathSfx;
+
+    private AudioSource audioSource;
+    private bool deathSfxPlayed;
+
     private Rigidbody2D rb;
     private Transform camTransform;
 
@@ -70,6 +81,9 @@ public class FinalBossEdgeController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        audioSource = GetComponent<AudioSource>();
+        PlaySfx(spawnSfx);
 
         if (targetCamera == null)
             targetCamera = Camera.main;
@@ -325,13 +339,18 @@ public class FinalBossEdgeController : MonoBehaviour
             return;
 
         Vector2 direction = ((Vector2)playerTransform.position - GetFirePosition()).normalized;
-        SpawnProjectile(prefab, direction, speed);
+
+        AudioClip fireSfx = GetFireSfxForPrefab(prefab);
+
+        SpawnProjectile(prefab, direction, speed, fireSfx);
     }
 
     private void FireShotgun()
     {
         if (shotgunProjectilePrefab == null || playerTransform == null)
             return;
+
+        PlaySfx(shotgunFireSfx);
 
         Vector2 baseDirection = ((Vector2)playerTransform.position - GetFirePosition()).normalized;
 
@@ -340,7 +359,8 @@ public class FinalBossEdgeController : MonoBehaviour
             float t = shotgunPellets <= 1 ? 0.5f : i / (float)(shotgunPellets - 1);
             float angle = Mathf.Lerp(-shotgunSpreadAngle, shotgunSpreadAngle, t);
             Vector2 direction = RotateVector(baseDirection, angle);
-            SpawnProjectile(shotgunProjectilePrefab, direction, shotgunProjectileSpeed);
+
+            SpawnProjectile(shotgunProjectilePrefab, direction, shotgunProjectileSpeed, null);
         }
     }
 
@@ -351,14 +371,19 @@ public class FinalBossEdgeController : MonoBehaviour
 
         Vector2 baseDirection = ((Vector2)playerTransform.position - GetFirePosition()).normalized;
         Vector2 direction = RotateVector(baseDirection, angleOffset);
-        SpawnProjectile(prefab, direction, speed);
+
+        AudioClip fireSfx = GetFireSfxForPrefab(prefab);
+
+        SpawnProjectile(prefab, direction, speed, fireSfx);
     }
 
-    private void SpawnProjectile(GameObject prefab, Vector2 direction, float speed)
+    private void SpawnProjectile(GameObject prefab, Vector2 direction, float speed, AudioClip fireSfx)
     {
         Vector2 spawnPos = GetFirePosition();
 
         GameObject projectile = Instantiate(prefab, spawnPos, Quaternion.identity);
+
+        PlaySfx(fireSfx);
 
         BossLaserProjectile bossProjectile = projectile.GetComponent<BossLaserProjectile>();
 
@@ -485,6 +510,8 @@ public class FinalBossEdgeController : MonoBehaviour
         isDodging = true;
         nextDodgeTime = Time.time + dodgeCooldown;
 
+        PlaySfx(dashSfx);
+
         Vector2 dodgeDirection;
 
         if (attachedEdge == CameraEdge.Top || attachedEdge == CameraEdge.Bottom)
@@ -525,6 +552,51 @@ public class FinalBossEdgeController : MonoBehaviour
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle + spriteForwardOffset);
+    }
+
+    private AudioClip GetFireSfxForPrefab(GameObject prefab)
+    {
+        if (prefab == fastProjectilePrefab)
+            return fastFireSfx;
+
+        if (prefab == slowProjectilePrefab)
+            return slowFireSfx;
+
+        if (prefab == shotgunProjectilePrefab)
+            return shotgunFireSfx;
+
+        return null;
+    }
+    
+    private void PlaySfx(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
+
+    private void PlayDeathSfx()
+    {
+        if (deathSfxPlayed)
+            return;
+
+        deathSfxPlayed = true;
+
+        if (deathSfx != null)
+        {
+            AudioSource.PlayClipAtPoint(deathSfx, transform.position);
+        }
+    }
+
+    private void OnDisable()
+    {
+        PlayDeathSfx();
+    }
+
+    private void OnDestroy()
+    {
+        PlayDeathSfx();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
