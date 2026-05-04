@@ -36,7 +36,7 @@ public class AimController : MonoBehaviour
     {
         _mousePos = updateMousePos();
         _playerPos = _player.transform.position;
-        _currentCrossHairPos = getCrossHairPos(_playerPos, _mousePos);
+        _currentCrossHairPos = _mousePos;
         transform.position = _currentCrossHairPos;
     }
 
@@ -54,11 +54,11 @@ public class AimController : MonoBehaviour
     }
 
     //purpose: gets new crosshair position by normalizing the mouse position relative to player position
-    private Vector2 getCrossHairPos(Vector2 playerPos, Vector2 mousePos)
+    /*private Vector2 getCrossHairPos(Vector2 playerPos, Vector2 mousePos)
     {
         Vector2 crossHairPos = playerPos + (mousePos - playerPos).normalized + new Vector2(_crosshair_offset, _crosshair_offset);
 
         return crossHairPos;
-    }
+    } */
 }
 
