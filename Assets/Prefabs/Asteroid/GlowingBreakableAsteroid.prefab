@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1225690286025858629}
   - component: {fileID: 6088090237552104931}
   - component: {fileID: 3518981373847864290}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GlowingBreakableAsteroid
   m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
@@ -339,7 +339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: efa7d33e1d864694ca24cc8db4d203fb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: efa7d33e1d864694ca24cc8db4d203fb, type: 3}
       propertyPath: m_TagString
