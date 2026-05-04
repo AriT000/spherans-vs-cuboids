@@ -2095,8 +2095,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 621976038924421102}
-  - {fileID: 6892112208697045698}
   - {fileID: 208441475610907759}
   - {fileID: 2275929089093820764}
   - {fileID: 1521682241393105835}
@@ -2105,6 +2103,8 @@ RectTransform:
   - {fileID: 2854851238020726562}
   - {fileID: 741657489089335687}
   - {fileID: 5291405928544973516}
+  - {fileID: 621976038924421102}
+  - {fileID: 6892112208697045698}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2222,6 +2222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e03798a807816e4cb6a36112ef111f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  healthbarui: {fileID: 0}
+  heatbarui: {fileID: 0}
   pauseUI: {fileID: 1056501510823310687}
   isPaused: 0
 --- !u!1 &5079560762770663215

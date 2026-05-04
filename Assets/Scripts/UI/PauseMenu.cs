@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 public class PauseMenu : MonoBehaviour
 {
-    public HealthBarUI healthBarUI;
-    public HeatBarUI heatBarUI;
     private PlayerControls playerControls;
     private InputAction menu;
 
@@ -57,6 +55,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0;
         AudioListener.pause = true;
         pauseUI.SetActive(true);
+
     }
 
     public void DeactivateMenu()
@@ -65,6 +64,7 @@ public class PauseMenu : MonoBehaviour
         AudioListener.pause = false;
         pauseUI.SetActive(false);
         isPaused = false;
+
     }
 
     public void Menu()
