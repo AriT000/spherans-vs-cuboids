@@ -39,7 +39,11 @@ namespace Assets.Scripts.Entities
             {
                 healthBarUI.UpdateHealthBar(health);
             }
-
+            BossHealthBarUI bossHealthBarUI = GameObject.FindWithTag("HudManager").GetComponent<BossHealthBarUI>();
+            if (bossHealthBarUI != null && gameObject.CompareTag("Boss"))
+            {
+                bossHealthBarUI.UpdateHealthBar(health);
+            }
             
             StartCoroutine(playDamageAnimation(entityMaterials));
             StopCoroutine(playDamageAnimation(entityMaterials)); // stops to prevent material collision problems

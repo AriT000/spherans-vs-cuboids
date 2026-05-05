@@ -10,32 +10,57 @@ public class BossHealthBarUI : MonoBehaviour
     [SerializeField]
     private RectTransform healthBar;
     private AttributesManager attributesManager;
+    public GameManager gameManager;
+
 
     public float Health { get => health; set => health = value; }
     public float MaxHealth { get => maxHealth; set => maxHealth = value; }
 
     void Start()
     {
-        
-        attributesManager = GameObject.FindGameObjectWithTag("Boss").GetComponent<AttributesManager>();
-        SetHealth(attributesManager.Health);
         Width = healthBar.sizeDelta.x;
         Height = healthBar.sizeDelta.y;
+        
+        StartCoroutine(FindBoss());
     }
     
-    //purpose: Set the health bar
-    public void SetHealth(int health)
+    IEnumerator FindBoss()
     {
-        healthText.text = attributesManager.Health.ToString();
-        MaxhealthText.text = attributesManager.Health.ToString();
-        MaxHealth = attributesManager.Health;
+        // Wait a few frames for boss to spawn
+        yield return null;
+        
+        GameObject boss = GameObject.FindGameObjectWithTag("Boss");
+        while (boss == null)
+        {
+            yield return new WaitForSeconds(0.5f);
+            boss = GameObject.FindGameObjectWithTag("Boss");
+        }
+        
+        attributesManager = boss.GetComponent<AttributesManager>();
+        if (attributesManager != null)
+        {
+            health = attributesManager.Health;
+            maxHealth = 200;
+            healthText.text = health.ToString();
+            MaxhealthText.text = maxHealth.ToString();
+        }
     }
 
-    //Purpose: Update the healthbar on callback on collision
-    public void UpdateHealthBar(int currentHealth)
+
+public void UpdateHealthBar(int currentHealth)
+{
+    // Prevent division issues
+    
+    float newWidth = (currentHealth / maxHealth) * Width;
+    
+    // Clamp to avoid negative values
+    newWidth = Mathf.Clamp(newWidth, 0, Width);
+    
+    healthBar.sizeDelta = new Vector2(newWidth, Height);
+    healthText.text = currentHealth.ToString();
+    if (currentHealth <= 0)
     {
-        float newWidth = currentHealth / maxHealth * Width;
-        healthBar.sizeDelta = new Vector2(newWidth,Height);
-        healthText.text = currentHealth.ToString();
+        gameManager.TriggerWin();
     }
+}
 }

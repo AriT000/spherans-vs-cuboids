@@ -2099,10 +2099,10 @@ RectTransform:
   - {fileID: 2275929089093820764}
   - {fileID: 1521682241393105835}
   - {fileID: 8269260974556269054}
-  - {fileID: 1798152820450657946}
   - {fileID: 2854851238020726562}
   - {fileID: 741657489089335687}
   - {fileID: 5291405928544973516}
+  - {fileID: 1798152820450657946}
   - {fileID: 621976038924421102}
   - {fileID: 6892112208697045698}
   m_Father: {fileID: 0}
@@ -2222,8 +2222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e03798a807816e4cb6a36112ef111f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  healthbarui: {fileID: 0}
-  heatbarui: {fileID: 0}
   pauseUI: {fileID: 1056501510823310687}
   isPaused: 0
 --- !u!1 &5079560762770663215

@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 		gameOverScreen.Setup();
 	}
 
-	private void TriggerWin()
+	public void TriggerWin()
 	{
         player.SetActive(false);
         healthBar.SetActive(false);
