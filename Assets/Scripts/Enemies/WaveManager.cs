@@ -179,7 +179,7 @@ public class WaveManager : MonoBehaviour
     {
         Debug.Log($"Starting Round {roundNumber}: {round.roundName}");
 
-        if (roundNumber == 2)
+        if (roundNumber == 6)
         {
             SpawnBossOnce();
         }
