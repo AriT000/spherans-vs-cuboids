@@ -4552,7 +4552,7 @@ MonoBehaviour:
   heat: 50
   heatDamage: 5
   heatRegenerationRate: 5
-  refreshRate: 3
+  refreshRate: 2
 --- !u!114 &803685003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4570,7 +4570,7 @@ MonoBehaviour:
   shotgunWeapon: {fileID: 2104963961870842101, guid: 3f5cd5d54d6a86e4e83217b6fcd34cb9, type: 3}
   slowWeapon_heat: 1
   fastWeapon_heat: 5
-  shotgunWeapon_heat: 20
+  shotgunWeapon_heat: 10
   slowWeaponColor: {r: 1, g: 0, b: 0, a: 1}
   fastWeaponColor: {r: 0, g: 0, b: 1, a: 1}
   shotGunWeaponColor: {r: 0, g: 1, b: 0, a: 1}
@@ -4748,9 +4748,20 @@ MonoBehaviour:
         - Enemy_B
       - localOffset: {x: 5, y: -1}
         allowedEnemyIds:
-        - Enemy_B
+        - Enemy_A
+      - localOffset: {x: 0, y: 0}
+        allowedEnemyIds:
+        - Enemy_C
+    - formationName: Enemy_diver_follower
+      slots:
+      - localOffset: {x: 3, y: 1}
+        allowedEnemyIds:
+        - Enemy_Diver
+      - localOffset: {x: 5, y: -1}
+        allowedEnemyIds:
+        - Enemy_Follower
     hostageEvent:
-      enabled: 0
+      enabled: 1
       eventCount: 1
       hostagePrefabId: Hostage_A
       guardEnemyId: Guard_B
@@ -8724,6 +8735,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -272
       objectReference: {fileID: 0}
+    - target: {fileID: 1056411650519807558, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
+      propertyPath: m_text
+      value: 1 - Slow Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 1056501510823310687, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -9112,6 +9127,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3660560240292706672, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
+      propertyPath: m_text
+      value: 2 - Fast Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 3690296605200084814, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
       propertyPath: m_fontStyle
       value: 1
@@ -9144,6 +9163,10 @@ PrefabInstance:
       propertyPath: healthBarUI
       value: 
       objectReference: {fileID: 503776976}
+    - target: {fileID: 4415725218585423868, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
+      propertyPath: m_text
+      value: 3 - Shotgun
+      objectReference: {fileID: 0}
     - target: {fileID: 4494895274529499450, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
       propertyPath: m_Color.a
       value: 1
