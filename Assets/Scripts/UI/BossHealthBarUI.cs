@@ -1,66 +1,91 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using Assets.Scripts.Entities;
+
 public class BossHealthBarUI : MonoBehaviour
 {
-    public float health, maxHealth, Width, Height;
-    public Text healthText, MaxhealthText;
-    [SerializeField]
-    private RectTransform healthBar;
+    [Header("Boss Health")]
+    public float health;
+    public float maxHealth = 200f;
+
+    [Header("UI")]
+    public Text healthText;
+    public Text MaxhealthText;
+
+    [SerializeField] private RectTransform healthBar;
+    [SerializeField] private GameObject bossHealthBarContainer;
+
+    private float Width;
+    private float Height;
+
     private AttributesManager attributesManager;
     public GameManager gameManager;
-
-
-    public float Health { get => health; set => health = value; }
-    public float MaxHealth { get => maxHealth; set => maxHealth = value; }
 
     void Start()
     {
         Width = healthBar.sizeDelta.x;
         Height = healthBar.sizeDelta.y;
-        
-        StartCoroutine(FindBoss());
+
+        if (bossHealthBarContainer != null)
+            bossHealthBarContainer.SetActive(false);
     }
-    
-    IEnumerator FindBoss()
+
+    void Update()
     {
-        // Wait a few frames for boss to spawn
-        yield return null;
-        
-        GameObject boss = GameObject.FindGameObjectWithTag("Boss");
-        while (boss == null)
+        if (attributesManager == null)
         {
-            yield return new WaitForSeconds(0.5f);
-            boss = GameObject.FindGameObjectWithTag("Boss");
+            FindBoss();
+            return;
         }
-        
+
+        UpdateHealthBar(attributesManager.Health);
+    }
+
+    private void FindBoss()
+    {
+        GameObject boss = GameObject.FindGameObjectWithTag("Boss");
+
+        if (boss == null)
+        {
+            if (bossHealthBarContainer != null)
+                bossHealthBarContainer.SetActive(false);
+
+            return;
+        }
+
         attributesManager = boss.GetComponent<AttributesManager>();
+
         if (attributesManager != null)
         {
             health = attributesManager.Health;
-            maxHealth = 200;
+
+            maxHealth = attributesManager.Health;
+
             healthText.text = health.ToString();
             MaxhealthText.text = maxHealth.ToString();
+
+            if (bossHealthBarContainer != null)
+                bossHealthBarContainer.SetActive(true);
         }
     }
 
-
-public void UpdateHealthBar(int currentHealth)
-{
-    // Prevent division issues
-    
-    float newWidth = (currentHealth / maxHealth) * Width;
-    
-    // Clamp to avoid negative values
-    newWidth = Mathf.Clamp(newWidth, 0, Width);
-    
-    healthBar.sizeDelta = new Vector2(newWidth, Height);
-    healthText.text = currentHealth.ToString();
-    if (currentHealth <= 0)
+    public void UpdateHealthBar(int currentHealth)
     {
-        gameManager.TriggerWin();
+        float healthPercent = currentHealth / maxHealth;
+        float newWidth = healthPercent * Width;
+
+        newWidth = Mathf.Clamp(newWidth, 0, Width);
+
+        healthBar.sizeDelta = new Vector2(newWidth, Height);
+        healthText.text = currentHealth.ToString();
+
+        if (currentHealth <= 0)
+        {
+            if (bossHealthBarContainer != null)
+                bossHealthBarContainer.SetActive(false);
+
+            if (gameManager != null)
+                gameManager.TriggerWin();
+        }
     }
-}
 }
