@@ -8932,7 +8932,7 @@ PrefabInstance:
     - target: {fileID: 1234999557364791970, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4545417272537390843}
     - target: {fileID: 1234999557364791970, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DeactivateMenu
@@ -9096,7 +9096,7 @@ PrefabInstance:
     - target: {fileID: 2387861268699376582, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4545417272537390843}
     - target: {fileID: 2387861268699376582, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Menu
@@ -9542,6 +9542,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1212745719}
   m_SourcePrefab: {fileID: 100100000, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
+--- !u!114 &4545417272537390843 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4205780681277372450, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}
+  m_PrefabInstance: {fileID: 4545417272537390842}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545417272537390844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e03798a807816e4cb6a36112ef111f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
 --- !u!1 &4545417272537390844 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5024868881594600405, guid: 9742835931201b84e9ec61bce005e9f4, type: 3}

@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 47364dc75c1ebd14eadc36e27df1cf81
   - enabled: 1
+    path: Assets/Scenes/2roundsBoss.unity
+    guid: dabe812e60724754c92fbdf755001c5f
+  - enabled: 1
     path: Assets/Scenes/demo_enemies_variation.unity
     guid: fd2e82d3a13592b4da679eed3d05db9d
   m_configObjects:
