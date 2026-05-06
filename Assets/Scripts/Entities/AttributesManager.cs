@@ -32,6 +32,7 @@ namespace Assets.Scripts.Entities
         public int Health { get => health; set => health = value; }
 
         public static event System.Action OnPlayerDeath;
+        public static event System.Action OnBossDeath;
 
         //Purpose: Damages the current game object health. If health reaches 0, game object dies.
         private void takeDamage(int damage)
@@ -55,6 +56,10 @@ namespace Assets.Scripts.Entities
             if (gameObject.CompareTag("Player") && health <= 0)
             {
                 OnPlayerDeath?.Invoke();
+            }
+            if (gameObject.CompareTag("Boss") && health <= 0)
+            {
+                OnBossDeath?.Invoke();
             }
             if (!gameObject.CompareTag("Player") && health <= 0)
             {

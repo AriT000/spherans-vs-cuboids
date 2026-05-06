@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameObject weaponHeatBar;
 	[SerializeField] private GameObject playerPortrait;
 	[SerializeField] private GameObject winScene;
+	[SerializeField] private GameObject waveManager;
 
 	private void Awake()
 	{
@@ -23,12 +24,14 @@ public class GameManager : MonoBehaviour
 	private void OnEnable()
 	{
 		AttributesManager.OnPlayerDeath += OnPlayerDeath;
+		AttributesManager.OnBossDeath += OnBossDeath;
 		WaveManager.OnAllRoundsComplete += OnAllRoundsComplete;
 	}
 
 	private void OnDisable()
 	{
 		AttributesManager.OnPlayerDeath -= OnPlayerDeath;
+		AttributesManager.OnBossDeath -= OnBossDeath;
 		WaveManager.OnAllRoundsComplete -= OnAllRoundsComplete;
 	}
 
@@ -43,16 +46,22 @@ public class GameManager : MonoBehaviour
 
 	public void TriggerWin()
 	{
-        player.SetActive(false);
-        healthBar.SetActive(false);
-        weaponHeatBar.SetActive(false);
-        playerPortrait.SetActive(false);
+		player.SetActive(false);
+		healthBar.SetActive(false);
+		weaponHeatBar.SetActive(false);
+		playerPortrait.SetActive(false);
 		winScene.SetActive(true);
+		waveManager.SetActive(false);
     }
 
 	private void OnPlayerDeath()
 	{
 		TriggerGameOver();
+	}
+
+	private void OnBossDeath()
+	{
+		TriggerWin();
 	}
 
 	private void OnAllRoundsComplete()
