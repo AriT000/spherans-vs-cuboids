@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame(string scene_name)
     {
-        SceneManager.LoadScene("2roundsBoss");
+        SceneManager.LoadScene("demo_enemies_variation");
     }
 
     public void QuitGame()
