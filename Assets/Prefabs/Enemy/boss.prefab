@@ -423,7 +423,7 @@ MonoBehaviour:
   bodyHitVfx: {fileID: 4221803460957958001}
   spawnSfx: {fileID: 0}
   dashSfx: {fileID: 0}
-  fastFireSfx: {fileID: 0}
+  fastFireSfx: {fileID: 8300000, guid: 70cb53af8929dbe4f86e4aa846730f33, type: 3}
   slowFireSfx: {fileID: 0}
   shotgunFireSfx: {fileID: 0}
   deathSfx: {fileID: 0}
