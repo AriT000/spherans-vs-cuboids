@@ -5083,17 +5083,25 @@ MonoBehaviour:
     prefab: {fileID: 1524906565996697961, guid: c5fc6b490101b6b4b9965080b9ab1c7d, type: 3}
   rounds:
   - roundName: Round 1
-    formationCount: 2
-    delayBetweenFormations: 10
+    formationCount: 3
+    delayBetweenFormations: 8
     allowedFormations:
-    - formationName: Enemy_B_Duo
+    - formationName: Enemy_B_C
       slots:
       - localOffset: {x: 3, y: 1}
         allowedEnemyIds:
         - Enemy_B
       - localOffset: {x: 5, y: -1}
         allowedEnemyIds:
+        - Enemy_C
+    - formationName: Enemy_B_A
+      slots:
+      - localOffset: {x: 3, y: 1}
+        allowedEnemyIds:
         - Enemy_B
+      - localOffset: {x: 5, y: -1}
+        allowedEnemyIds:
+        - Enemy_A
     hostageEvent:
       enabled: 1
       eventCount: 1
@@ -5116,25 +5124,28 @@ MonoBehaviour:
       minLifetime: 10
       maxLifetime: 16
   - roundName: Round 2
-    formationCount: 3
+    formationCount: 4
     delayBetweenFormations: 6
     allowedFormations:
-    - formationName: Laser, Big Laser
+    - formationName: Follower, Diver, Follower
       slots:
       - localOffset: {x: -3, y: 1}
         allowedEnemyIds:
-        - Enemy_B
+        - Enemy_Follower
       - localOffset: {x: 1, y: -1}
         allowedEnemyIds:
-        - Enemy_C
-    - formationName: Circle, Laser
+        - Enemy_Diver
+      - localOffset: {x: 3, y: 0}
+        allowedEnemyIds:
+        - Enemy_Follower
+    - formationName: Diver, Follower
       slots:
       - localOffset: {x: 3, y: 1}
         allowedEnemyIds:
-        - Enemy_A
+        - Enemy_Diver
       - localOffset: {x: 3, y: 1}
         allowedEnemyIds:
-        - Enemy_B
+        - Enemy_Follower
     hostageEvent:
       enabled: 1
       eventCount: 1
@@ -5157,29 +5168,23 @@ MonoBehaviour:
       minLifetime: 10
       maxLifetime: 16
   - roundName: Round 3
-    formationCount: 4
-    delayBetweenFormations: 7
+    formationCount: 10
+    delayBetweenFormations: 20
     allowedFormations:
-    - formationName: Big laser, Follower, Diver
+    - formationName: B and Diver
       slots:
       - localOffset: {x: 3, y: 1}
         allowedEnemyIds:
-        - Enemy_C
+        - Enemy_B
       - localOffset: {x: 5, y: -1}
         allowedEnemyIds:
-        - Enemy_Follower
-      - localOffset: {x: 0, y: 0}
-        allowedEnemyIds:
         - Enemy_Diver
-    - formationName: Big Laser 2x, Diver
+    - formationName: Big Laser, Diver
       slots:
       - localOffset: {x: 5, y: -5}
         allowedEnemyIds:
         - Enemy_C
       - localOffset: {x: -5, y: 5}
-        allowedEnemyIds:
-        - Enemy_C
-      - localOffset: {x: 0, y: 0}
         allowedEnemyIds:
         - Enemy_Diver
     - formationName: Follower, Diver
