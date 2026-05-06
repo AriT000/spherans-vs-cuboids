@@ -89,7 +89,7 @@ MonoBehaviour:
   strafeChangeIntervalMax: 2
   facePlayer: 1
   spriteForwardOffset: -90
-  strafeSfx: {fileID: 8300000, guid: 5b52317979052524bbf5daf7fb149e15, type: 3}
+  strafeSfx: {fileID: 0}
 --- !u!58 &3265385210590391350
 CircleCollider2D:
   m_ObjectHideFlags: 0
