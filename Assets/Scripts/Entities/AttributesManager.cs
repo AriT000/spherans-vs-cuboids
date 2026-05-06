@@ -25,6 +25,10 @@ namespace Assets.Scripts.Entities
         [SerializeField] private int health;
         [SerializeField] private EntityMaterials entityMaterials;
 
+        [Header("Heat Replenishment")]
+        [SerializeField] private bool givesEnergyOnDeath = false;
+        [SerializeField] private int energyRewardOnDeath = 10;
+
         public int Health { get => health; set => health = value; }
 
         public static event System.Action OnPlayerDeath;
@@ -87,7 +91,28 @@ namespace Assets.Scripts.Entities
         //Purpose: removes game object from scene.
         private void Die()
         {
+            // If the enemy gives energy on death, give the player energy before destroying the enemy.
+             if (givesEnergyOnDeath)
+            {
+                GivePlayerEnergy();
+            }
+
             Destroy(gameObject);
+        }
+
+        private void GivePlayerEnergy()
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player == null)
+                return;
+
+            OverheatManager overheatManager = player.GetComponentInChildren<OverheatManager>();
+
+            if (overheatManager != null)
+            {
+                overheatManager.RestoreHeat(energyRewardOnDeath);
+            }
         }
 
         //Purpose: Upon coming across a particle, the game object gets the atributes and loses health. If the game object doesn't have the attribute manager,

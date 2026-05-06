@@ -118,6 +118,8 @@ MonoBehaviour:
   damagePower: 10
   health: 20
   entityMaterials: {fileID: 11400000, guid: 3ab21d2c124c4454bbace560e0ac0a81, type: 2}
+  givesEnergyOnDeath: 1
+  energyRewardOnDeath: 10
 --- !u!114 &9051688539723096891
 MonoBehaviour:
   m_ObjectHideFlags: 0

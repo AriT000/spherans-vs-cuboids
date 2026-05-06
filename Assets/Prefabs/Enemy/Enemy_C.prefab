@@ -163,6 +163,8 @@ MonoBehaviour:
   damagePower: 5
   health: 20
   entityMaterials: {fileID: 11400000, guid: 3ab21d2c124c4454bbace560e0ac0a81, type: 2}
+  givesEnergyOnDeath: 1
+  energyRewardOnDeath: 10
 --- !u!114 &4810664361486736011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +187,7 @@ MonoBehaviour:
   strafeChangeIntervalMax: 2.5
   facePlayer: 0
   spriteForwardOffset: -90
+  strafeSfx: {fileID: 0}
 --- !u!212 &5617910494771790858
 SpriteRenderer:
   serializedVersion: 2

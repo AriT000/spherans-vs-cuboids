@@ -85,6 +85,17 @@ public class OverheatManager : MonoBehaviour
 
     }
 
+    //Added this so enemies can restore player energy/heat when they die.
+    public void RestoreHeat(int amount)
+    {
+    heat += amount;
+
+        if (heat > maxHeat)
+        {
+            heat = maxHeat;
+        }
+    }
+
     //purpose: rest the timer to control the timing of the regeneration rate
     private void resetTimer()
     {
