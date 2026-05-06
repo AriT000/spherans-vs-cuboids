@@ -5210,7 +5210,7 @@ MonoBehaviour:
       enabled: 1
       asteroidPrefab: {fileID: 3914784862136130488, guid: f5c8d66b5984825498e6f8f666859b7b, type: 3}
       asteroidCount: 2
-      delayBetweenAsteroids: 40
+      delayBetweenAsteroids: 10
       spawnPadding: 1.5
       minDriftSpeed: 1.2
       maxDriftSpeed: 2.4
