@@ -5127,7 +5127,7 @@ MonoBehaviour:
     formationCount: 4
     delayBetweenFormations: 6
     allowedFormations:
-    - formationName: Follower, Diver, Follower
+    - formationName: Follower, Diver, EnemyB
       slots:
       - localOffset: {x: -3, y: 1}
         allowedEnemyIds:
@@ -5137,7 +5137,7 @@ MonoBehaviour:
         - Enemy_Diver
       - localOffset: {x: 3, y: 0}
         allowedEnemyIds:
-        - Enemy_Follower
+        - Enemy_B
     - formationName: Diver, Follower
       slots:
       - localOffset: {x: 3, y: 1}
@@ -5168,7 +5168,7 @@ MonoBehaviour:
       minLifetime: 10
       maxLifetime: 16
   - roundName: Round 3
-    formationCount: 10
+    formationCount: 5
     delayBetweenFormations: 20
     allowedFormations:
     - formationName: B and Diver
